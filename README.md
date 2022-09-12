@@ -1,2 +1,3 @@
-# movies-explorer-frontend
-Repositiry for react application for diploma Yandex.Practicum
+Fronten for movie explorer application.
+
+available here: [https://movie.ampilovs.ru](https://movie.ampilovs.ru)
