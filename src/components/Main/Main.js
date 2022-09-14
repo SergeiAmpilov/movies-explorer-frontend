@@ -2,12 +2,28 @@ import React from 'react';
 
 import './Main.css';
 
+import Header from '../Header/Header';
+import Promo from '../Promo/Promo';
+import AboutProject from '../AboutProject/AboutProject';
+import Techs from '../Techs/Techs';
+import AboutMe from '../AboutMe/AboutMe';
+import Portfolio from '../Portfolio/Portfolio';
+import Footer from '../Footer/Footer';
+
+
+
 function Main() {
 
   return (
-    <main className="content">
-      <h1>Main component</h1>
-    </main>
+    <>
+      <Header />
+      <Promo />
+      <AboutProject />
+      <Techs />
+      <AboutMe />
+      <Portfolio />
+      <Footer />
+    </>
   );
 }
 
