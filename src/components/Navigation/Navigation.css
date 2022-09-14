@@ -1,0 +1,19 @@
+.navigation__auth-link {
+  color: #FFF;
+  text-decoration: none;
+  margin-left: 30px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+}
+
+.navigation__auth-link:visited {
+  color: #FFF;
+}
+
+.navigation__green-link {
+  color: #000;
+  background-color: #3DDC84;
+  padding: 8px 20px;
+  border-radius: 3px;
+}
