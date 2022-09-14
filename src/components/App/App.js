@@ -1,11 +1,16 @@
+import React from 'react';
+
 import '../../vendor/normalize.css';
 import './App.css';
+
+/* components */
+import Main from '../Main/Main'
 
 
 function App() {
   return (
     <div className="App">
-      <h1>Starting web app movie explorer</h1>
+      <Main />
     </div>
   );
 }
