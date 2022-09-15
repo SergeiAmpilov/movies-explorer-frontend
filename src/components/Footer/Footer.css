@@ -20,7 +20,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #FFF; 
+  color: #FFF;
   font-size: 13px;
   font-weight: 400;
   line-height: 16px;
@@ -34,4 +34,10 @@
 
 .footer__link-item {
   margin-left: 20px;
+  color: #FFF;
+  text-decoration: none;
+}
+
+.footer__link-item:visited {
+  color: #FFF;
 }

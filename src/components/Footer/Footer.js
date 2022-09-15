@@ -11,11 +11,15 @@ function Footer() {
           <div className='footer__content_group'>&copy; 2022</div>
           <div className='footer__content_group'>
             <ul className='footer__link-list'>
-              <li className='footer__link-item'>
-                Яндекс.Практикум
+              <li>
+                <a className='footer__link-item' href='https://practicum.yandex.ru/' target='_blank' rel="noreferrer">
+                  Яндекс.Практикум
+                </a>
               </li>
-              <li className='footer__link-item'>
-                Github
+              <li>
+                <a className='footer__link-item' href='https://github.com/' target='_blank' rel="noreferrer">
+                  Github
+                </a>
               </li>
             </ul>
           </div>
