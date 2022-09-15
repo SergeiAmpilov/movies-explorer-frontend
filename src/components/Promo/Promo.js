@@ -10,7 +10,9 @@ import promoLogo from '../../images/logo.svg';
 function Promo() {
   return (
       <div className='promo'>
-        <Header />
+        <Header
+          loggedIn={false}
+        />
         <div className='promo__description'>
           <div className='promo__text-content'>
             <h1 className='section-maintext promo__title'>Учебный проект студента факультета Веб-разработки.</h1>
