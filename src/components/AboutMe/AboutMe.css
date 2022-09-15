@@ -34,3 +34,7 @@
 .about-me__gh-link:visited {
   color: #FFF;
 }
+
+.about-me__img {
+  border-radius: 10px;
+}
