@@ -13,7 +13,7 @@ function Promo() {
         <Header />
         <div className='promo__description'>
           <div className='promo__text-content'>
-            <h1 className='promo__title'>Учебный проект студента факультета Веб-разработки.</h1>
+            <h1 className='section-maintext promo__title'>Учебный проект студента факультета Веб-разработки.</h1>
             <p className='promo__subtitle'>Листайте ниже, чтобы узнать больше про этот проект и его создателя.</p>
           </div>          
           <img src={promoLogo} alt="Логотип" className="promo__logo"/>
