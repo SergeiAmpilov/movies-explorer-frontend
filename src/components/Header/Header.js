@@ -6,8 +6,9 @@ import promoLogo from '../../images/header-logo.svg';
 
 
 function Header({ loggedIn }) {
+  const headerClass = loggedIn ? 'header header__auth' : 'header' ;
   return (
-    <header className='header'>
+    <header className={headerClass}>
       <img src={promoLogo} alt="Логотип меню" className="header__logo"/>     
       <Navigation
         loggedIn={loggedIn}

@@ -1,20 +1,34 @@
 import React from 'react';
 
 import './Navigation.css';
+import accLogo from '../../images/acc-icon.svg';
+
 
 function Navigation({ loggedIn }) {
   return (
-    <div className='navigation'>
-      {/* <nav className='navigation__main'>
-        <a className='navigation__main-link' href='#'>Фильмы</a>
-        <a className='navigation__main-link' href='#'>Сохраненные фильмы</a>
-      </nav> */}
+    
+    <>
+      { loggedIn && (
+        <nav className='navigation'>
+          <div classname='navigation__group_film'>
+            <a className='navigation__link navigation__link_movie' href='#'>Фильмы</a>
+            <a className='navigation__link navigation__link_movie' href='#'>Сохраненные фильмы</a>
+          </div>
+          
+          <div className='navigation__group_account'>
+            <img src={accLogo} />
+            <a className='navigation__link navigation__link_account' href='#'>Аккаунт</a>
+          </div>
+        </nav>
+      )}
       
-      { !loggedIn && (<nav className='navigation__auth'>
-        <a className='navigation__auth-link' href='#'>Регистрация</a>
-        <a className='navigation__auth-link navigation__green-link' href='#'>Войти</a>
-      </nav>) }
-    </div>
+      { !loggedIn && (
+        <nav className='navigation__auth'>
+          <a className='navigation__link navigation__link_auth' href='#'>Регистрация</a>
+          <a className='navigation__link navigation__link_auth navigation__green-link' href='#'>Войти</a>
+        </nav>
+      )}
+    </>
   );
 }
 
