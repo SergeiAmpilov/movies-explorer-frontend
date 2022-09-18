@@ -5,7 +5,7 @@ import './MoviesCardList.css';
 import MoviesCard from '../MoviesCard/MoviesCard';
 
 
-function MoviesCardList() {
+function MoviesCardList({ isSaved }) {
 
   const cardList = [
     {
@@ -52,6 +52,7 @@ function MoviesCardList() {
     key={card._id}
     title={card.title}
     duration={card.duration}
+    isSaved={isSaved}
   /> );
 
   return (
@@ -59,9 +60,10 @@ function MoviesCardList() {
       <ul className="card-list">
           { cardsElements }
       </ul>
-      <div className='cards-section__navigation'>
+      { !isSaved &&
+      (<div className='cards-section__navigation'>
         <button type='button' className='cards-section__button'>Ещё</button>
-      </div>
+      </div>)}
       
     </section>
   );

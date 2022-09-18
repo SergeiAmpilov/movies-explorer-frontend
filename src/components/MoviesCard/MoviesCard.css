@@ -41,6 +41,10 @@
   background-image: url(../../images/not-favourite-icon.svg);
 }
 
+.card__favourite-button_isSaved {
+  background-image: url(../../images/saved-icon.svg);
+}
+
 .card__container {
   margin-top: 14px;
   padding: 0 12px;

@@ -2,16 +2,19 @@ import React from 'react';
 
 import './MoviesCard.css';
 
+function MoviesCard({img, title, duration, isSaved}) {
 
-
-
-function MoviesCard({img, title, duration}) {
-
+  let buttonClass;
   const isFavourite = true;
-  const buttonClass = isFavourite ? 'card__favourite-button_isfav' : 'card__favourite-button_notfav';
   const hours = Math.floor(duration / 60);
   const minutes = duration - hours * 60;
   const durationText = (hours ? `${hours}ч` : '') + `${minutes}м`;
+
+  if (isSaved) {
+    buttonClass = 'card__favourite-button_isSaved';
+  } else {
+    buttonClass = isFavourite ? 'card__favourite-button_isfav' : 'card__favourite-button_notfav';    
+  }
 
   return(
     <li className='card'>

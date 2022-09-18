@@ -10,6 +10,7 @@ import './App.css';
 /* components */
 import Main from '../Main/Main'
 import Movies from '../Movies/Movies'
+import SavedMovies from '../SavedMovies/SavedMovies'
 
 
 function App() {
@@ -22,7 +23,8 @@ function App() {
         <Route exact path='/movies'>
           <Movies />
         </Route>
-        <Route path='/saved-movies'>
+        <Route exact path='/saved-movies'>
+          <SavedMovies />
         </Route>
         <Route path='/profile'>
         </Route>

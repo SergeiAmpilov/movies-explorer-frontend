@@ -1,28 +1,24 @@
 import React from 'react';
 
-import './Movies.css';
+import './SavedMovies.css';
 
 import Header from '../Header/Header';
 import SearchForm from '../SearchForm/SearchForm';
-import Preloader from '../Preloader/Preloader';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Footer from '../Footer/Footer';
 
 
 
-function Movies() {
+
+function SavedMovies({img, title, duration}) {
   return (
-    <section className='movies'>
+    <section className='movies saved-movies'>
         <Header loggedIn={true} />
         <SearchForm />
-        <Preloader />
-        <MoviesCardList isSaved={false} />
+        <MoviesCardList isSaved={true} />
         <Footer />
     </section>
-      
-    
-
   );
 }
 
-export default Movies;
+export default SavedMovies;
