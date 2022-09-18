@@ -11,6 +11,7 @@ import './App.css';
 import Main from '../Main/Main'
 import Movies from '../Movies/Movies'
 import SavedMovies from '../SavedMovies/SavedMovies'
+import PageNotFound from '../PageNotFound/PageNotFound'
 
 
 function App() {
@@ -26,11 +27,14 @@ function App() {
         <Route exact path='/saved-movies'>
           <SavedMovies />
         </Route>
-        <Route path='/profile'>
+        <Route exact path='/profile'>
         </Route>
-        <Route path='/signin'>
+        <Route exact path='/signin'>
         </Route>
-        <Route path='/signup'>
+        <Route exact path='/signup'>
+        </Route>
+        <Route exact path="*">
+          <PageNotFound />
         </Route>
       </Switch>
       
