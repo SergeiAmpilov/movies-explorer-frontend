@@ -27,7 +27,7 @@ function SearchForm() {
           onClick={handlecClickSearchShorts}
           className={`search-form__shorts-button ${searchShortsButtonClassName}`}
           ></button>
-        <label htmlFor='shorts'>Короткометражки</label>        
+        <label htmlFor='shorts' className='search-form__label'>Короткометражки</label>        
       </form>
     </div>
   );
