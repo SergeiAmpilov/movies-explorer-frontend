@@ -3,6 +3,7 @@ import React from 'react';
 import './Movies.css';
 
 import Header from '../Header/Header';
+import SearchForm from '../SearchForm/SearchForm';
 
 
 function Movies() {
@@ -11,6 +12,7 @@ function Movies() {
         <Header
           loggedIn={true}
         />
+        <SearchForm />
     </div>
       
     
