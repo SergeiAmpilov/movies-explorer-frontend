@@ -31,3 +31,27 @@
   border: none;
   width: 700px;
 }
+
+.search-form__shorts-button {
+  width: 36px;
+  height: 20px;
+  border: none;
+  border-radius: 20px;
+  background-size: initial;
+  background-repeat: no-repeat;  
+}
+
+.search-form__shorts-button_enabled {
+  background-color: #2BE080;
+  background-image: url(../../images/inner-button-enable.svg);
+  background-position: 85% center;
+
+}
+
+.search-form__shorts-button_disabled {
+  /* background-color: #EBEBEB; */
+  background-color: #343434;
+  
+  background-image: url(../../images/inner-button-disable.svg);
+  background-position: 15% center;
+}
