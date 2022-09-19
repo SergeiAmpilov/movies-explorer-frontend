@@ -1,0 +1,10 @@
+.login {
+  background-color: #202020;
+  color: #FFF;
+  width: 100%;
+  height: 100vh;
+}
+
+.login__form_button {
+  margin-top: 204px;
+}

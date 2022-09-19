@@ -13,6 +13,7 @@ import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import PageNotFound from '../PageNotFound/PageNotFound';
 import Register from '../Register/Register';
+import Login from '../Login/Login';
 
 
 
@@ -32,6 +33,7 @@ function App() {
         <Route exact path='/profile'>
         </Route>
         <Route exact path='/signin'>
+          <Login />
         </Route>
         <Route exact path='/signup'>
           <Register />
