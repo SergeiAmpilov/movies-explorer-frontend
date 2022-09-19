@@ -14,39 +14,45 @@ function Register() {
             <p className='register__form_field-title'>Имя</p>            
             <input
               className='register__form_field-input'
+              type='text'
               placeholder='Виталий'
               name='name'
               id="name-input"
+              required
             />
             <p className="register__form_field-error register__form_field-error_visible name-input-error">
               Сообщение об ошибке
             </p>
           </label>
           <label className='register__form_group'>
-            <p>E-mail</p>            
+            <p className='register__form_field-title'>E-mail</p>            
             <input
-            className='register__form_field-input'
+              className='register__form_field-input'
+              type='email'
               placeholder='help@yandex.ru'
               name='email'
               id="email-input"
+              required
             />
             <p className="register__form_field-error email-input-error">Сообщение об ошибке</p>
           </label>
           <label className='register__form_group'>
-            <p>Пароль</p>            
+            <p className='register__form_field-title'>Пароль</p>            
             <input
               className='register__form_field-input'
+              type='password'
               placeholder='123456'
               name='password'
               id="password-input"
+              required
             />
             <p className="register__form_field-error register__form_field-error_visible password-input-error">Сообщение об ошибке</p>
           </label>
-          <button type='submit'>Зарегистрироваться</button>
+          <button className='register__form_button' type='submit'>Зарегистрироваться</button>
         </form>
-        <p>
+        <p className='register__footer-text'>
           Уже зарегистрированы?
-          <a href="#">Войти</a>
+          <a href="#" className='not-found__link register__footer-link'>Войти</a>
         </p>
       </div>      
     </section>
