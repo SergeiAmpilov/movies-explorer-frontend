@@ -42,9 +42,6 @@ function Login() {
           Ещё не зарегистрированы?
           <a href="#" className='not-found__link register__footer-link'>Регистрация</a>
         </p>
-
-
-
       </div>      
     </section>
   );
