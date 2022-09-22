@@ -3,9 +3,11 @@ import React from 'react';
 import './MoviesCardList.css';
 
 import MoviesCard from '../MoviesCard/MoviesCard';
+import Preloader from '../Preloader/Preloader';
 
 
-function MoviesCardList({ isSaved }) {
+
+function MoviesCardList({ isSaved, showPreloader = false }) {
 
   const cardList = [
     {
@@ -55,7 +57,12 @@ function MoviesCardList({ isSaved }) {
     isSaved={isSaved}
   /> );
 
-  return (
+  return showPreloader
+    ? (
+    <section className='cards-section'>
+      <Preloader />
+    </section>)
+    : (
     <section className='cards-section'>
       <ul className="card-list">
           { cardsElements }
@@ -63,8 +70,7 @@ function MoviesCardList({ isSaved }) {
       { !isSaved &&
       (<div className='cards-section__navigation'>
         <button type='button' className='cards-section__button'>Ещё</button>
-      </div>)}
-      
+      </div>)}      
     </section>
   );
 }
