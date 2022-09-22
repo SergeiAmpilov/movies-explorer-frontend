@@ -9,7 +9,9 @@ function Login() {
   return (
     <section className='login'>
       <div className='register__container'>
-        <img src={promoLogo} alt="Логотип меню" className="header__logo"/>
+        <a href='/'>
+          <img src={promoLogo} alt="Логотип меню" className="header__logo"/>
+        </a>        
         <h1 className='register__title'>Рады видеть!</h1>
         <form className='register__form'>
           <label className='register__form_group'>

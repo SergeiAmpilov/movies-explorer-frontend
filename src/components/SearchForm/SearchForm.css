@@ -53,6 +53,10 @@
   background-repeat: no-repeat;  
 }
 
+.search-form__shorts-button:hover {
+  cursor: pointer;
+}
+
 .search-form__shorts-button_enabled {
   background-color: #2BE080;
   background-image: url(../../images/inner-button-enable.svg);

@@ -9,7 +9,9 @@ function Header({ loggedIn }) {
   const headerClass = loggedIn ? 'header header__auth' : 'header' ;
   return (
     <header className={headerClass}>
-      <img src={promoLogo} alt="Логотип меню" className="header__logo"/>     
+      <a href='/'>
+        <img src={promoLogo} alt="Логотип меню" className="header__logo"/>
+      </a>
       <Navigation
         loggedIn={loggedIn}
       />

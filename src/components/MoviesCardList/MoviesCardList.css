@@ -30,3 +30,10 @@
   border: 1px solid #424242;
   border-radius: 10px;
 }
+
+.cards-section__button:hover {
+  cursor: pointer;
+  background: #F8F8F8;
+  opacity: .8;
+  color: #000;
+}

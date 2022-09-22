@@ -1,4 +1,5 @@
 import React from 'react';
+// import { Link, NavLink } from 'react-router-dom'; 
 
 import './Navigation.css';
 import accLogo from '../../images/acc-icon.svg';
@@ -6,26 +7,52 @@ import accLogo from '../../images/acc-icon.svg';
 
 function Navigation({ loggedIn }) {
   return (
-    
     <>
-      { loggedIn && (
+      { loggedIn ? (
         <nav className='navigation'>
           <div className='navigation__group_film'>
-            <a className='navigation__link navigation__link_movie' href='#'>Фильмы</a>
-            <a className='navigation__link navigation__link_movie' href='#'>Сохраненные фильмы</a>
+            <a 
+              href="/movies"
+              className='navigation__link navigation__link_movie navigation__link_active'>Фильмы</a>
+            {/* <NavLink
+              to="/movies"
+              className='navigation__link navigation__link_movie'
+              activeClassName="navigation__link_active">
+              Фильмы
+            </NavLink>
+            <NavLink
+              to="/saved-movies"
+              className='navigation__link navigation__link_movie'
+              activeClassName="navigation__link_active">
+              Сохраненные фильмы
+            </NavLink> */}
+            <a
+              href="/saved-movies"
+              className='navigation__link navigation__link_movie'>
+                Сохраненные фильмы
+            </a>
           </div>
           
-          <div className='navigation__group_account'>
-            <img src={accLogo} />
-            <a className='navigation__link navigation__link_account' href='#'>Аккаунт</a>
+          <div>
+            {/* <Link
+              to="/profile"
+              className='navigation__link navigation__link_account'>
+              <img src={accLogo} className='navigation__link_account-logo'/>
+              Аккаунт
+            </Link> */}
+            <a
+              href="/profile"
+              className='navigation__link navigation__link_account'>
+                <img src={accLogo} className='navigation__link_account-logo'/>
+                Аккаунт
+            </a>
           </div>
         </nav>
-      )}
-      
-      { !loggedIn && (
+      ) :      
+      (
         <nav className='navigation__auth'>
-          <a className='navigation__link navigation__link_auth' href='#'>Регистрация</a>
-          <a className='navigation__link navigation__link_auth navigation__green-link' href='#'>Войти</a>
+          <a className='navigation__link navigation__link_auth' href='/signup'>Регистрация</a>
+          <a className='navigation__link navigation__link_auth navigation__green-link' href='/signin'>Войти</a>
         </nav>
       )}
     </>

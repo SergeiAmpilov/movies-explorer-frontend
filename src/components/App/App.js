@@ -4,6 +4,7 @@ import {
   Switch,
 } from "react-router-dom";
 
+
 import '../../vendor/normalize.css';
 import './App.css';
 
@@ -25,22 +26,18 @@ function App() {
         <Route exact path='/'>
           <Main />
         </Route>
-        <Route exact path='/movies'>
-          <Movies />
-        </Route>
-        <Route exact path='/saved-movies'>
-          <SavedMovies />
-        </Route>
-        <Route exact path='/profile'>
+        <Route path='/saved-movies' component={SavedMovies} />
+        <Route path='/movies' component={Movies} />
+        <Route path='/profile'>
           <Profile />
         </Route>
-        <Route exact path='/signin'>
+        <Route path='/signin'>
           <Login />
         </Route>
-        <Route exact path='/signup'>
+        <Route path='/signup'>
           <Register />
         </Route>
-        <Route exact path="*">
+        <Route path="*">
           <PageNotFound />
         </Route>
       </Switch>
