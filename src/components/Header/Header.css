@@ -10,3 +10,9 @@
 .header__auth {
   justify-content: flex-start;
 }
+
+@media screen and (max-width: 1140px) {
+  .header {
+    width: 708px;
+  }
+}

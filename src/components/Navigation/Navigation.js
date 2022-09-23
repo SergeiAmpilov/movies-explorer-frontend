@@ -47,6 +47,7 @@ function Navigation({ loggedIn }) {
                 Аккаунт
             </a>
           </div>
+          <button type='button' className='navigation__burger-button'></button>
         </nav>
       ) :      
       (

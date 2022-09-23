@@ -52,3 +52,27 @@
 .navigation__link_account-logo {
   margin-right: 7px;
 }
+
+.navigation__burger-button {
+  background-color: transparent;
+  border: none;
+  width: 44px;
+  height: 44px;
+  background-size: cover;
+  background-image: url(../../images/burger-icon.svg);
+  display: none;
+}
+
+@media screen and (max-width: 1140px) {
+  .navigation__burger-button {
+    display: block;
+  }
+
+  .navigation__group_film {
+    display: none;
+  }
+
+  .navigation__link_account {
+    display: none;
+  }
+}

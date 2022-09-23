@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 
 import './Login.css';
@@ -29,7 +27,7 @@ function Login() {
           <label className='register__form_group'>
             <p className='register__form_field-title'>Пароль</p>            
             <input
-              className='register__form_field-input'
+              className='register__form_field-input register__form_field-input-error'
               type='password'
               placeholder='123456'
               name='password'
