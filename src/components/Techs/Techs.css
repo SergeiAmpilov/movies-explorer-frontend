@@ -39,3 +39,15 @@
   background-color: #303030;
   padding: 21px 0;
 }
+
+@media screen and (max-width: 1140px) {
+  .techs__list {
+    width: 648px;
+  }
+
+  .techs__list-item {
+    width: 84px;
+    font-size: 12px;
+    line-height: 15px;
+  }
+}

@@ -37,3 +37,14 @@
   opacity: .8;
   color: #000;
 }
+
+@media screen and (max-width: 1140px) {
+  .cards-section {
+    width: 708px;
+  }
+
+  .card-list {
+    grid-template-columns: repeat(auto-fill, minmax(339px, 1fr) );
+    gap: 36px 30px;
+  }
+}

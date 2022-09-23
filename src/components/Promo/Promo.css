@@ -32,3 +32,25 @@
   width: 640px;
   display: block;
 }
+
+@media screen and (max-width: 1140px) {
+  .promo__description {
+    width: 708px;
+    flex-direction:column-reverse;
+    align-items: center;
+  }
+
+  .promo__text-content {
+    text-align: center;
+  }
+
+  .promo__title {
+    width: 680px;
+    margin: 48px 0 0;
+  }
+
+  .promo__subtitle {
+    width: 260px;
+    margin: 22px auto 0;
+  }
+}

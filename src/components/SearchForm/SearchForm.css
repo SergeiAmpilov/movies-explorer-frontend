@@ -29,7 +29,6 @@
   background-color: transparent;
   border: none;
   outline:none;
-  width: 700px;
   width: 70%;
   color: #FFF;
   font-weight: 400;
@@ -76,3 +75,13 @@
   line-height: 18px;
 }
 
+
+@media screen and (max-width: 1140px) {
+  .search-form {
+    width: 708px;
+  }
+
+  .search-form__input {
+    width: 338px;
+  }
+}

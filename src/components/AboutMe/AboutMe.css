@@ -38,3 +38,14 @@
 .about-me__img {
   border-radius: 10px;
 }
+
+@media screen and (max-width: 1140px) {
+  .about-me__text {
+    width: 364px;
+    margin-bottom: 87px;
+  }
+
+  .about-me__img {
+    width: 255px;
+  }
+}
