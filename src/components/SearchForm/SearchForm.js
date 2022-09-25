@@ -18,16 +18,18 @@ function SearchForm() {
   return (
     <div className='search-form'>
       <form className='search-form__form'>
-        <img src={searchIcon} alt="Поиск" className=""/>
+        <img src={searchIcon} alt="Поиск" className="search-form__search-icon"/>
         <input placeholder='Фильм' className='search-form__input'></input>
         <button type='submit' className='search-form__search-button'></button>
         <img src={breakIcon} alt="Поиск" className="search-form__break_icon"/>
-        <button
-          type='button'
-          onClick={handlecClickSearchShorts}
-          className={`search-form__shorts-button ${searchShortsButtonClassName}`}
-          ></button>
-        <label htmlFor='shorts' className='search-form__label'>Короткометражки</label>        
+        <div className='search-form__shorts-group'>
+          <button
+            type='button'
+            onClick={handlecClickSearchShorts}
+            className={`search-form__shorts-button ${searchShortsButtonClassName}`}
+            ></button>
+          <label htmlFor='shorts' className='search-form__label'>Короткометражки</label>        
+        </div>
       </form>
     </div>
   );

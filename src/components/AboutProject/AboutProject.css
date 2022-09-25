@@ -102,3 +102,9 @@
     width: 708px;
   }
 }
+
+@media screen and (max-width: 720px) {
+  .section-container {
+    width: calc(100% - 20px);
+  }
+}

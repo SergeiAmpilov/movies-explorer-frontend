@@ -48,3 +48,9 @@
     gap: 36px 30px;
   }
 }
+
+@media screen and (max-width: 720px) {
+  .cards-section {
+    width: calc(100% - 20px);
+  }
+}
