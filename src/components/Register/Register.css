@@ -99,3 +99,33 @@
 .register__footer-link {
   margin-left: 6px;
 }
+
+@media screen and (max-width: 600px) {
+  .register__container {
+    width: 260px;
+  }
+
+  .register__form_button {
+    padding: 15px 67px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .register__footer-text {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .register__footer-link {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .register__header {
+    text-align: center;
+  }
+
+}

@@ -7,10 +7,12 @@ function Register() {
   return (
     <section className='register'>
       <div className='register__container'>
-        <a href='/'>
-          <img src={promoLogo} alt="Логотип меню" className="header__logo"/>
-        </a>
-        <h1 className='register__title'>Добро пожаловать</h1>
+        <div className='register__header'>
+          <a href='/'>
+            <img src={promoLogo} alt="Логотип меню" className="header__logo"/>
+          </a>
+          <h1 className='register__title'>Добро пожаловать</h1>
+        </div>
         <form className='register__form'>
           <label className='register__form_group'>
             <p className='register__form_field-title'>Имя</p>            

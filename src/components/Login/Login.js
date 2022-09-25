@@ -7,10 +7,12 @@ function Login() {
   return (
     <section className='login'>
       <div className='register__container'>
-        <a href='/'>
-          <img src={promoLogo} alt="Логотип меню" className="header__logo"/>
-        </a>        
-        <h1 className='register__title'>Рады видеть!</h1>
+        <div className='register__header'>
+          <a href='/'>
+            <img src={promoLogo} alt="Логотип меню" className="header__logo"/>
+          </a>        
+          <h1 className='register__title'>Рады видеть!</h1>
+        </div>
         <form className='register__form'>
           <label className='register__form_group'>
             <p className='register__form_field-title'>E-mail</p>            
@@ -36,7 +38,7 @@ function Login() {
             />
             <p className="register__form_field-error register__form_field-error_visible password-input-error">Сообщение об ошибке</p>
           </label>
-          <button className='register__form_button login__form_button' type='submit'>Зарегистрироваться</button>
+          <button className='register__form_button login__form_button' type='submit'>Войти</button>
         </form>
         <p className='register__footer-text'>
           Ещё не зарегистрированы?
