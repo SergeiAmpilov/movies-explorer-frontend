@@ -32,3 +32,17 @@
 .not-found__link:visited {
   color: #4285F4;
 }
+
+@media screen and (max-width: 320px) {
+  .not-found__text-404 {
+    font-weight: 400;
+    font-size: 80px;
+    line-height: 97px;
+  }
+
+  .not-found__link {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+  }
+}
