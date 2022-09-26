@@ -3,9 +3,16 @@ import React from 'react';
 
 import './Navigation.css';
 import accLogo from '../../images/acc-icon.svg';
+import PopupMenu from '../PopupMenu/PopupMenu';
 
 
-function Navigation({ loggedIn, handleBurger }) {
+
+function Navigation({ loggedIn }) {
+  const [isPopupVisible, setIsPopupVisible ] = React.useState(false);
+
+  const handleBurgerOpen = () => setIsPopupVisible(!isPopupVisible);
+
+
   return (
     <>
       { loggedIn ? (
@@ -47,7 +54,7 @@ function Navigation({ loggedIn, handleBurger }) {
                 Аккаунт
             </a>
           </div>
-          <button type='button' className='navigation__burger-button' onClick={handleBurger}></button>
+          <button type='button' className='navigation__burger-button' onClick={handleBurgerOpen}></button>
         </nav>
       ) :      
       (
@@ -56,6 +63,11 @@ function Navigation({ loggedIn, handleBurger }) {
           <a className='navigation__link navigation__link_auth navigation__green-link' href='/signin'>Войти</a>
         </nav>
       )}
+      <PopupMenu
+        isVisible={isPopupVisible}
+        handleBurger={handleBurgerOpen}
+      />
+
     </>
   );
 }

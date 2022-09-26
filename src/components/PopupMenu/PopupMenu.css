@@ -6,7 +6,7 @@
   height: 100%;
   z-index: 4;
   visibility: hidden;
-  transition: visibility 0.5s ease, opacity 0.5s linear;
+  transition: visibility 0.1s ease, opacity 0.1s linear;
   display: flex;
   justify-content: flex-end;
 

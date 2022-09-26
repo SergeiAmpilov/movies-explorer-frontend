@@ -63,6 +63,8 @@
   display: none;
 }
 
+
+
 @media screen and (max-width: 1140px) {
   .navigation__burger-button {
     display: block;
@@ -75,4 +77,8 @@
   .navigation__link_account {
     display: none;
   }
+}
+
+.navigation__link_account-visible {
+  display: block;
 }
