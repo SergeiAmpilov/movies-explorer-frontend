@@ -51,3 +51,26 @@
     line-height: 15px;
   }
 }
+
+@media screen and (max-width: 720px) {
+
+  .techs__list {
+    max-width: 80%;
+    padding: 0;
+    justify-content: space-around;
+    grid-template-columns: repeat(auto-fill, minmax(84px, 1fr) );
+    gap: 10px 10px;
+
+
+    display: grid;
+  }
+
+  .techs__subtitle {
+    max-width: 80%;
+
+  }
+
+  .techs__list-item {
+    margin: 10px;
+  }
+}

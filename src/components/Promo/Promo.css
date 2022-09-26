@@ -54,3 +54,23 @@
     margin: 22px auto 0;
   }
 }
+
+@media screen and (max-width: 720px) {
+  .promo__text-content {
+    max-width: calc(100% - 20px);
+  }
+
+  .promo__description {
+    max-width: calc(100% - 20px);
+
+  }
+
+  .promo__title {
+    max-width: calc(100% - 20px);
+
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 38px;
+  }
+
+}
