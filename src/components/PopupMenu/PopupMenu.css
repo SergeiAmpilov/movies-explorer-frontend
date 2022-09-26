@@ -16,7 +16,6 @@
   width: 60%;
   background-color: black;
   opacity: .4;
-
 }
 
 .popup_visible {
@@ -24,7 +23,39 @@
 }
 
 .popup__container {
-  /* opacity: 1; */
   width:40%;
   background-color: #202020;
+  display: block;
 }
+
+.popup__close-button {
+  background-color: transparent;
+  border: none;
+  width: 30px;
+  height: 30px;
+  background-size: cover;
+  background-image: url(../../images/close-icon.svg);
+  margin: 22px 0 0 calc(100% - 50px);
+}
+
+.popup__navigation {
+  margin: 0 auto;
+}
+
+.popup__menu-item {
+  text-align: center;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  margin-top: 28px;
+}
+
+.popup__menu-item:first-child {
+  margin-top: 105px;
+}
+
+.popup__menu-item:last-child {
+  margin: 100px auto 0;
+  width: 100px;
+}
+

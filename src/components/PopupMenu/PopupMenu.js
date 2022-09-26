@@ -2,6 +2,7 @@ import React from 'react';
 
 import './PopupMenu.css';
 import accLogo from '../../images/acc-icon.svg';
+import closeLogo from '../../images/close-icon.svg';
 
 
 function PopupMenu({ isVisible, handleBurger }) {
@@ -11,24 +12,43 @@ function PopupMenu({ isVisible, handleBurger }) {
       <div className="popup__background">
       </div>
       <div className="popup__container">
-        <button onClick={handleBurger}>Закрыть</button>
-        <a href="/"
-            className='navigation__link navigation__link_movie'>
-              Главная
-        </a>
-        <a href="/movies"
-            className='navigation__link navigation__link_movie navigation__link_active'>
-              Фильмы
-        </a>
-        <a href="/saved-movies"
-            className='navigation__link navigation__link_movie'>
-              Сохраненные фильмы
-        </a>
-        <a href="/profile"
-            className='navigation__link navigation__link_account navigation__link_account-visible '>
-              <img src={accLogo} className='navigation__link_account-logo'/>
-              Аккаунт
-        </a>
+        <button
+          className='popup__close-button'
+          onClick={handleBurger}>
+        </button>
+        <nav className='popup__navigation'>
+          <div className='popup__menu-item'>
+            <a href="/"
+                className='navigation__link'>
+                  Главная
+            </a>
+          </div>
+          <div className='popup__menu-item'>
+            <a href="/movies"
+                className='navigation__link navigation__link_active'>
+                  Фильмы
+            </a>
+          </div>
+          <div className='popup__menu-item'>
+            <a href="/saved-movies"
+                className='navigation__link'>
+                  Сохраненные фильмы
+            </a>
+          </div>
+          <div className='popup__menu-item'>
+            <a href="/profile"
+                className='navigation__link navigation__link_account navigation__link_account-visible '>
+                  <img src={accLogo} className='navigation__link_account-logo'/>
+                  Аккаунт
+            </a>
+          </div>
+
+
+
+
+
+
+        </nav>
 
       </div>
     </div>
