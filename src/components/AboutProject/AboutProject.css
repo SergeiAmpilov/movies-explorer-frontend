@@ -104,9 +104,31 @@
 }
 
 @media screen and (max-width: 720px) {
-  .about-project__diagram {
+  .about-project__content {
+    display: block;
   }
+
   .section-container {
     width: calc(100% - 20px);
+  }
+
+  .about-project__diagram_element-green {
+    width: 30%;
+  }
+
+  .about-project__diagram_element-dark {
+    width: 70%;
+  }
+
+  .about-project__diagram_title {
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 13px;
+  }
+
+  .about-project__diagram_text {
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 13px;
   }
 }
