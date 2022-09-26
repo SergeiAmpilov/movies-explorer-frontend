@@ -30,6 +30,7 @@
   margin: 0;
   display: flex;
   list-style-type: none;
+  padding: 0;
 }
 
 .footer__link-item {
@@ -40,4 +41,28 @@
 
 .footer__link-item:visited {
   color: #FFF;
+}
+
+@media screen and (max-width: 720px) {
+  .footer__content {
+    flex-direction: column-reverse;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer__link-item {
+    margin: 0;
+  }
+
+  .footer__link-list {
+    flex-direction: column;
+  }
+
+  .footer__content_group {
+    margin-top: 30px;
+  }
+
+  .footer__link-element:last-child {
+    margin-top: 12px;
+  }
 }

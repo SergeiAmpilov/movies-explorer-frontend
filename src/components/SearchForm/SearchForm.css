@@ -123,4 +123,8 @@
   .search-form__input {
     width: calc(100% - 75px);
   }
+
+  .search-form {
+    padding: 0 0 44px;
+  }
 }
