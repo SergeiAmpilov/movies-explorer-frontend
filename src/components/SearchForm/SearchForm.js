@@ -9,7 +9,8 @@ import api from '../../utils/api';
 function SearchForm({ 
   showPreloader,
   hidePreloader,
-  setIsEmptyQuery
+  setIsEmptyQuery,
+  setMovieCardList
 }) {
   
   const [searchShorts, setSearchShorts] = React.useState(true);
@@ -39,6 +40,9 @@ function SearchForm({
     api.getFilms()
     .then( (result) => {
        console.log(result);
+       const listFiltered = result.filter( (item) => item.nameRU !== ''
+          && item.nameRU.toLowerCase().indexOf(query.toLowerCase()) !== -1);
+        setMovieCardList(listFiltered);
     })
     .catch(err => console.log(`Ошибка.....: ${err}`))
     .finally( () => hidePreloader() );

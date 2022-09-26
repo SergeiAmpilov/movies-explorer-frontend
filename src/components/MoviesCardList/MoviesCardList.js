@@ -7,7 +7,7 @@ import Preloader from '../Preloader/Preloader';
 
 
 
-function MoviesCardList({ isSaved, isPreloaderVisible = false }) {
+function MoviesCardList({ isSaved, isPreloaderVisible = false, movieCardList = [] }) {
 
   const cardList = [
     {
