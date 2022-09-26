@@ -11,10 +11,18 @@ import Footer from '../Footer/Footer';
 
 
 function SavedMovies({ handleBurger }) {
+
+  const showPreloader = () => { console.log('showPreloader')};
+  const hidePreloader = () => { console.log('hidePreloader')};
+  const showEmptyQuery = () => { console.log('showEmptyQuery')};
   return (
     <section className='movies saved-movies'>
         <Header loggedIn={true} handleBurger={handleBurger} />
-        <SearchForm />
+        <SearchForm 
+          showPreloader={showPreloader}
+          hidePreloader={hidePreloader}
+          showEmptyQuery={showEmptyQuery}
+        />
         <MoviesCardList isSaved={true} />
         <Footer />
     </section>

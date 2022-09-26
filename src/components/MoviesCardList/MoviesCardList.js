@@ -7,7 +7,7 @@ import Preloader from '../Preloader/Preloader';
 
 
 
-function MoviesCardList({ isSaved, showPreloader = false }) {
+function MoviesCardList({ isSaved, isPreloaderVisible = false }) {
 
   const cardList = [
     {
@@ -57,7 +57,7 @@ function MoviesCardList({ isSaved, showPreloader = false }) {
     isSaved={isSaved}
   /> );
 
-  return showPreloader
+  return isPreloaderVisible
     ? (
     <section className='cards-section'>
       <Preloader />
