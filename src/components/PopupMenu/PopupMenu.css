@@ -59,3 +59,12 @@
   width: 100px;
 }
 
+@media screen and (max-width: 720px) {
+  .popup__background {
+    width: 0;
+  }
+
+  .popup__container {
+    width: 100%;
+  }
+}
