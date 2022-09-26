@@ -5,7 +5,7 @@ import './Navigation.css';
 import accLogo from '../../images/acc-icon.svg';
 
 
-function Navigation({ loggedIn }) {
+function Navigation({ loggedIn, handleBurger }) {
   return (
     <>
       { loggedIn ? (
@@ -47,7 +47,7 @@ function Navigation({ loggedIn }) {
                 Аккаунт
             </a>
           </div>
-          <button type='button' className='navigation__burger-button'></button>
+          <button type='button' className='navigation__burger-button' onClick={handleBurger}></button>
         </nav>
       ) :      
       (

@@ -10,10 +10,10 @@ import Footer from '../Footer/Footer';
 
 
 
-function SavedMovies({img, title, duration}) {
+function SavedMovies({ handleBurger }) {
   return (
     <section className='movies saved-movies'>
-        <Header loggedIn={true} />
+        <Header loggedIn={true} handleBurger={handleBurger} />
         <SearchForm />
         <MoviesCardList isSaved={true} />
         <Footer />

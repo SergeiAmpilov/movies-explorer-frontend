@@ -5,7 +5,7 @@ import Navigation from '../Navigation/Navigation';
 import promoLogo from '../../images/header-logo.svg';
 
 
-function Header({ loggedIn }) {
+function Header({ loggedIn, handleBurger }) {
   const headerClass = loggedIn ? 'header header__auth' : 'header' ;
   return (
     <header className={headerClass}>
@@ -14,6 +14,7 @@ function Header({ loggedIn }) {
       </a>
       <Navigation
         loggedIn={loggedIn}
+        handleBurger={handleBurger}
       />
     </header>
   );
