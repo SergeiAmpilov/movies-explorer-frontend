@@ -38,7 +38,11 @@ function PopupMenu({ isVisible, handleBurger }) {
           <div className='popup__menu-item'>
             <a href="/profile"
                 className='navigation__link navigation__link_account navigation__link_account-visible '>
-                  <img src={accLogo} className='navigation__link_account-logo'/>
+                  <img
+                    src={accLogo}
+                    className='navigation__link_account-logo'
+                    alt='Логотип пользовательского аккаунта'
+                  />
                   Аккаунт
             </a>
           </div>

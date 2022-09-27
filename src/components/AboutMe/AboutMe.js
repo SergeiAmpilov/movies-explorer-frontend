@@ -19,7 +19,7 @@ function AboutMe() {
             <a className='about-me__gh-link' href='https://github.com/SergeiAmpilov/' target='_blank' rel="noreferrer">Github</a>
           </div>
           <div className='about-me__content-section'>
-            <img className='about-me__img' src={studentPhoto} alt="Логотип" />
+            <img className='about-me__img' src={studentPhoto} alt="Фото Ампилов С.Ю." />
           </div>
         </div>
       </div>

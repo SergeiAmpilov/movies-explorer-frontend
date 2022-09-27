@@ -21,18 +21,6 @@ function Navigation({ loggedIn }) {
             <a 
               href="/movies"
               className='navigation__link navigation__link_movie navigation__link_active'>Фильмы</a>
-            {/* <NavLink
-              to="/movies"
-              className='navigation__link navigation__link_movie'
-              activeClassName="navigation__link_active">
-              Фильмы
-            </NavLink>
-            <NavLink
-              to="/saved-movies"
-              className='navigation__link navigation__link_movie'
-              activeClassName="navigation__link_active">
-              Сохраненные фильмы
-            </NavLink> */}
             <a
               href="/saved-movies"
               className='navigation__link navigation__link_movie'>
@@ -41,16 +29,14 @@ function Navigation({ loggedIn }) {
           </div>
           
           <div>
-            {/* <Link
-              to="/profile"
-              className='navigation__link navigation__link_account'>
-              <img src={accLogo} className='navigation__link_account-logo'/>
-              Аккаунт
-            </Link> */}
             <a
               href="/profile"
               className='navigation__link navigation__link_account'>
-                <img src={accLogo} className='navigation__link_account-logo'/>
+                <img
+                  src={accLogo}
+                  className='navigation__link_account-logo'
+                  alt='Логотип пользовательского аккаунта'
+                />
                 Аккаунт
             </a>
           </div>

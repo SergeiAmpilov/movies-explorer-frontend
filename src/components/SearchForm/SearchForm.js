@@ -68,10 +68,10 @@ function SearchForm({
   return (
     <div className='search-form'>
       <form className='search-form__form' onSubmit={handleSubmitSearch}>
-        <img src={searchIcon} alt="Поиск" className="search-form__search-icon"/>
+        <img src={searchIcon} alt="Иконка поиска" className="search-form__search-icon"/>
         <input placeholder='Фильм' className='search-form__input' onInput={handleQueryInput}></input>
         <button type='submit' className='search-form__search-button'></button>
-        <img src={breakIcon} alt="Поиск" className="search-form__break_icon"/>
+        <img src={breakIcon} alt="Иконка разделитель" className="search-form__break_icon"/>
         <div className='search-form__shorts-group'>
           <button
             type='button'
