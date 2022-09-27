@@ -2,7 +2,6 @@ import React from 'react';
 
 import './PopupMenu.css';
 import accLogo from '../../images/acc-icon.svg';
-import closeLogo from '../../images/close-icon.svg';
 
 
 function PopupMenu({ isVisible, handleBurger }) {

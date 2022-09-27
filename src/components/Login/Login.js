@@ -42,7 +42,7 @@ function Login() {
         </form>
         <p className='register__footer-text'>
           Ещё не зарегистрированы?
-          <a href="#" className='not-found__link register__footer-link'>Регистрация</a>
+          <a href="/signup" className='not-found__link register__footer-link'>Регистрация</a>
         </p>
       </div>      
     </section>

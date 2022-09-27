@@ -56,7 +56,7 @@ function Register() {
         </form>
         <p className='register__footer-text'>
           Уже зарегистрированы?
-          <a href="#" className='not-found__link register__footer-link'>Войти</a>
+          <a href="/signin" className='not-found__link register__footer-link'>Войти</a>
         </p>
       </div>      
     </section>
