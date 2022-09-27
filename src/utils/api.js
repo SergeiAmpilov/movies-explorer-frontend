@@ -27,7 +27,7 @@ class Api {
   }
 
   getSiteUrl() {
-    return 'https://api.nomoreparties.co/';
+    return 'https://api.nomoreparties.co';
   }
 
 }

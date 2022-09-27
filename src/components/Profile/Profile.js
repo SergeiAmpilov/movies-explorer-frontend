@@ -6,8 +6,10 @@ import Header from '../Header/Header';
 
 function Profile() {
   return (
-    <section className='profile'>
-      <Header loggedIn={true} />
+    <>
+    <Header loggedIn={true} />
+
+    <main className='profile'>
       <h1 className='profile__title'>Привет, Святогор!</h1>
       <form className='profile__form'>
         <label className='profile__form_group'>
@@ -40,7 +42,8 @@ function Profile() {
         </div>
       </form>
       
-    </section>
+    </main>
+    </>
   );
 }
 
