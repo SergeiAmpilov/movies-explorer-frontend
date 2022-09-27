@@ -13,7 +13,10 @@ import Footer from '../Footer/Footer';
 function Movies() {
 
   const [isPreloaderVisible, setIsPreloaderVisible] = React.useState(false);
-  const [isEmptyQuery, setIsEmptyQuery] = React.useState(false);
+  const [isEmptyQuery, setIsEmptyQuery] = React.useState({
+    value: false,
+    message: ''
+  });
   const [movieCardList, setMovieCardList] = React.useState([]);
   // затвра с этого момента продолжу. мне пока не понятно как вызвать рендеринг
 
@@ -36,8 +39,8 @@ function Movies() {
           setIsEmptyQuery={setIsEmptyQuery}
           setMovieCardList={setMovieCardList}
         />
-        { isEmptyQuery 
-          ? <EmptyQuery messageText='Был введен пустой поисковый запрос.' />
+        { isEmptyQuery.value 
+          ? <EmptyQuery messageText={`${isEmptyQuery.message}`} />
           : <MoviesCardList
               isSaved={false}
               isPreloaderVisible={isPreloaderVisible}

@@ -29,7 +29,10 @@ function SearchForm({
 
     evt.preventDefault();
     if (query.trim() === '') {
-      setIsEmptyQuery(true);
+      setIsEmptyQuery({
+        value: true,
+        message: 'Вы ничего не ввели в поисковую строку.'
+      });
       return ;
     } else {
       setIsEmptyQuery(false);
@@ -41,10 +44,22 @@ function SearchForm({
     .then( (result) => {
        const listFiltered = result.filter( (item) => item.nameRU !== ''
           && item.nameRU.toLowerCase().indexOf(query.toLowerCase()) !== -1);
-        console.log('listFiltered', listFiltered);
+        if (listFiltered.length === 0) {
+          setIsEmptyQuery({
+            value: true,
+            message: `По вашему запросу "${query}" не найдено подходящих фильмов`
+          });
+        }
         setMovieCardList(listFiltered);
     })
-    .catch(err => console.log(`Ошибка.....: ${err}`))
+    .catch((err) => {
+      console.log(`Ошибка.....: ${err}`);
+      setIsEmptyQuery({
+        value: true,
+        message: 'Произошла ошибка на сервере'
+      });
+
+    })
     .finally( () => hidePreloader() );
   }
 
