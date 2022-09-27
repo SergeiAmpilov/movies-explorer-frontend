@@ -39,9 +39,9 @@ function SearchForm({
 
     api.getFilms()
     .then( (result) => {
-       console.log(result);
        const listFiltered = result.filter( (item) => item.nameRU !== ''
           && item.nameRU.toLowerCase().indexOf(query.toLowerCase()) !== -1);
+        console.log('listFiltered', listFiltered);
         setMovieCardList(listFiltered);
     })
     .catch(err => console.log(`Ошибка.....: ${err}`))

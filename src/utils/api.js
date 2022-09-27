@@ -26,6 +26,10 @@ class Api {
     return this._request();
   }
 
+  getSiteUrl() {
+    return 'https://api.nomoreparties.co/';
+  }
+
 }
 
 const api = new Api();
