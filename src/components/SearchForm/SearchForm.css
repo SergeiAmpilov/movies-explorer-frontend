@@ -25,6 +25,11 @@
   border: none;
 }
 
+.search-form__search-button:hover {
+  cursor: pointer;
+  opacity: .7;
+}
+
 .search-form__input {
   background-color: transparent;
   border: none;
@@ -41,6 +46,10 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 20px;
+}
+
+.search-form__input:focus {
+  border-bottom: 1px solid  #4285F4;
 }
 
 .search-form__shorts-button {
