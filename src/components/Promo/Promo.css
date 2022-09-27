@@ -1,6 +1,7 @@
 .promo {
   margin: 0 auto;
   background-color: #073042;
+  padding-top: 93px;
 }
 
 .section-maintext {
@@ -23,7 +24,7 @@
 
 .promo__description {
   width: 1140px;
-  margin: 93px auto 0;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
 }
