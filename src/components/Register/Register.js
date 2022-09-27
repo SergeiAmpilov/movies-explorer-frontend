@@ -22,6 +22,8 @@ function Register() {
               placeholder='Виталий'
               name='name'
               id="name-input"
+              minLength="2"
+              maxLength="40"
               required
             />
             <p className="register__form_field-error register__form_field-error_visible name-input-error">
@@ -48,6 +50,7 @@ function Register() {
               placeholder='123456'
               name='password'
               id="password-input"
+              minLength="6"
               required
             />
             <p className="register__form_field-error register__form_field-error_visible password-input-error">Сообщение об ошибке</p>

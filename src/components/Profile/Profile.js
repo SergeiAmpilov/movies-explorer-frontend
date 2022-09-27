@@ -14,7 +14,13 @@ function Profile() {
           <p className='profile__form_title'>Имя</p>
           <input
             className='profile__form_input'
+            name='name'
+            id="name-input"
             placeholder='Святогор'
+            type='text'
+            minLength="2"
+            maxLength="40"
+            required
           />
         </label>
         <label className='profile__form_group'>
@@ -22,11 +28,15 @@ function Profile() {
           <input
             className='profile__form_input'
             placeholder='help@yandex.ru'
+            name='email'
+            id="email-input"
+            type='email'
+            required
           />
         </label>
         <div className='profile__form_footer'>
           <button className='profile__form_button' type='submit'>Редактировать</button>
-          <a className='profile__logout-link' href='#'>Выйти из аккаунта</a>
+          <a className='profile__logout-link' href='/'>Выйти из аккаунта</a>
         </div>
       </form>
       
