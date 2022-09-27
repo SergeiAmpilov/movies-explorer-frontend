@@ -31,25 +31,27 @@ function Movies() {
 
 
   return (
-    <section className='movies'>
-        <Header loggedIn={true} />
-        <SearchForm 
-          showPreloader={showPreloader}
-          hidePreloader={hidePreloader}
-          setIsEmptyQuery={setIsEmptyQuery}
-          setMovieCardList={setMovieCardList}
-        />
-        { isEmptyQuery.value 
-          ? <EmptyQuery messageText={`${isEmptyQuery.message}`} />
-          : <MoviesCardList
-              isSaved={false}
-              isPreloaderVisible={isPreloaderVisible}
-              movieCardList={movieCardList}
-            />          
-        }
+    <>
+      <Header loggedIn={true} />
+      <main className='movies'>
+          <SearchForm 
+            showPreloader={showPreloader}
+            hidePreloader={hidePreloader}
+            setIsEmptyQuery={setIsEmptyQuery}
+            setMovieCardList={setMovieCardList}
+          />
+          { isEmptyQuery.value 
+            ? <EmptyQuery messageText={`${isEmptyQuery.message}`} />
+            : <MoviesCardList
+                isSaved={false}
+                isPreloaderVisible={isPreloaderVisible}
+                movieCardList={movieCardList}
+              />          
+          }
+      </main>
+      <Footer />
 
-        <Footer />
-    </section>
+    </>
       
     
 
