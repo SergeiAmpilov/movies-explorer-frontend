@@ -34,6 +34,10 @@
   background-size: cover;
 }
 
+.card__favourite-button:hover {
+  cursor: pointer;
+}
+
 .card__favourite-button_isfav {
   background-image: url(../../images/favourite-icon.svg);
 }
@@ -57,6 +61,9 @@
 }
 
 .card__duration {
-  color:#FFF;
+  color:#8B8B8B;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 13px;
   margin: 10px 0 0;
 }
