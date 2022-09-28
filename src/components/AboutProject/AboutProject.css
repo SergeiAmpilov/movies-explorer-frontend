@@ -112,6 +112,10 @@
     width: calc(100% - 20px);
   }
 
+  .section-title {
+    padding-top: 70px;
+  }
+
   .about-project__diagram_element-green {
     width: 30%;
   }

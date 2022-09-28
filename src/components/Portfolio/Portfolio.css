@@ -36,3 +36,15 @@
 .portfolio__case-item_text {
   color: #FFF;
 }
+
+@media screen and (max-width: 720px) {
+  .portfolio {
+    padding-bottom: 70px;
+  }
+
+  .portfolio__case-item {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 28px;
+  }
+}

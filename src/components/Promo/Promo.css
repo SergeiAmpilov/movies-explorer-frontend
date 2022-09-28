@@ -63,7 +63,10 @@
 
   .promo__description {
     max-width: calc(100% - 20px);
+  }
 
+  .promo__logo {
+    max-width: 210px;
   }
 
   .promo__title {

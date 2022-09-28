@@ -65,4 +65,8 @@
   .footer__link-element:last-child {
     margin-top: 12px;
   }
+
+  .footer__text {
+    padding-top: 79px;
+  }
 }

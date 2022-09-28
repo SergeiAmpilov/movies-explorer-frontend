@@ -54,20 +54,38 @@
 
 @media screen and (max-width: 720px) {
 
+  .techs {
+    background-color: #202020;
+    padding-bottom: 70px;
+
+  }
+
+  .techs__main-title {
+    border-bottom: 1px solid #000;
+  }
+
+  .techs__title {
+    margin-top: 60px;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 36px;
+  }
+
   .techs__list {
     max-width: 80%;
     padding: 0;
     justify-content: space-around;
     grid-template-columns: repeat(auto-fill, minmax(84px, 1fr) );
     gap: 10px 10px;
-
-
+    margin-top: 50px;
     display: grid;
   }
 
   .techs__subtitle {
-    max-width: 80%;
-
+    max-width: 300px;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 16px;
   }
 
   .techs__list-item {
