@@ -10,17 +10,23 @@ function Portfolio() {
       <div className="section-container">
         <h4 className='portfolio__small-title'>Портфолио</h4>
         <ul className='portfolio__case-list'>
-          <li className='portfolio__case-item'>
-            <div className='portfolio__case-item_text'>Статичный сайт</div>
-            <img src={arrowMain} alt="Стрелка" className="portfolio__case-item_img"/>            
+          <li className='portfolio__list-element'>
+            <a className='portfolio__case-item' href='/' target='_blank'>
+              <div className='portfolio__case-item_text'>Статичный сайт</div>
+              <img src={arrowMain} alt="Стрелка" className="portfolio__case-item_img"/>
+            </a>
           </li>
-          <li className='portfolio__case-item'>
-            <div className='portfolio__case-item_text'>Адаптивный сайт</div>
-            <img src={arrowMain} alt="Стрелка" className="portfolio__case-item_img"/>            
+          <li className='portfolio__list-element'>
+            <a className='portfolio__case-item' href='/' target='_blank'>
+              <div className='portfolio__case-item_text'>Адаптивный сайт</div>
+              <img src={arrowMain} alt="Стрелка" className="portfolio__case-item_img"/>            
+            </a>
           </li>
-          <li className='portfolio__case-item'>
-            <div className='portfolio__case-item_text'>Одностраничное приложение</div>
-            <img src={arrowMain} alt="Стрелка" className="portfolio__case-item_img"/>            
+          <li className='portfolio__list-element'>
+            <a className='portfolio__case-item' href='/' target='_blank'>
+              <div className='portfolio__case-item_text'>Одностраничное приложение</div>
+              <img src={arrowMain} alt="Стрелка" className="portfolio__case-item_img"/>            
+            </a>
           </li>
         </ul>
       </div>

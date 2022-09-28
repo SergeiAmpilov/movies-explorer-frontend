@@ -28,6 +28,10 @@
   border-radius: 3px;
 }
 
+.navigation__green-link:visited {
+  color: #000;
+}
+
 .navigation__link_movie {
   margin-left: 16px;
 }
