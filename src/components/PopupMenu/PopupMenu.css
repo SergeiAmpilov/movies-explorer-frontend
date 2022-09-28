@@ -55,7 +55,7 @@
 }
 
 .popup__menu-item:last-child {
-  margin: 100px auto 0;
+  margin: calc(100vh - 55px - 105px - 45px - 56px - 38px - 90px) auto 0;
   width: 100px;
 }
 
