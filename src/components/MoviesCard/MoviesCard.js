@@ -22,7 +22,7 @@ function MoviesCard({img, title, duration, isSaved}) {
       <div className='card__container'>
         <div className='card__title-group'>
           <p className='card__title'>{title}</p>
-          <button type='button' className={`card__favourite-button ${buttonClass}`}></button>
+          <button type='button' className={`card__favourite-button ${buttonClass}`}/>
         </div>      
         <p className='card__duration'>{durationText}</p>
       </div>

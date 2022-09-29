@@ -2,8 +2,28 @@ import React from 'react';
 
 import './Register.css';
 import promoLogo from '../../images/header-logo.svg';
+import movieApi from '../../utils/MovieApi';
 
 function Register() {
+
+  const [name, setName] = React.useState('');
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
+
+  const handleChangeName = (evt) => setName(evt.target.value);
+  const handleChangeEmail = (evt) => setEmail(evt.target.value);
+  const handleChangePassword = (evt) => setPassword(evt.target.value);
+
+
+
+
+
+  const handleSubmitRigister = (evt) => {
+    evt.preventDefault();
+
+    console.log('handle submit registaration');
+  }
+
   return (
     <section className='register'>
       <div className='register__container'>
@@ -13,7 +33,7 @@ function Register() {
           </a>
           <h1 className='register__title'>Добро пожаловать</h1>
         </div>
-        <form className='register__form'>
+        <form className='register__form' onSubmit={handleSubmitRigister}>
           <label className='register__form_group'>
             <p className='register__form_field-title'>Имя</p>            
             <input
@@ -24,6 +44,7 @@ function Register() {
               id="name-input"
               minLength="2"
               maxLength="40"
+              onChange={handleChangeName}
               required
             />
             <p className="register__form_field-error register__form_field-error_visible name-input-error">
@@ -38,6 +59,7 @@ function Register() {
               placeholder='help@yandex.ru'
               name='email'
               id="email-input"
+              onChange={handleChangeEmail}
               required
             />
             <p className="register__form_field-error email-input-error">Сообщение об ошибке</p>
@@ -51,6 +73,7 @@ function Register() {
               name='password'
               id="password-input"
               minLength="6"
+              onChange={handleChangePassword}
               required
             />
             <p className="register__form_field-error register__form_field-error_visible password-input-error">Сообщение об ошибке</p>
