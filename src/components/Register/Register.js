@@ -1,10 +1,17 @@
 import React from 'react';
 
+import {
+  useHistory,
+} from "react-router-dom";
+
 import './Register.css';
 import promoLogo from '../../images/header-logo.svg';
 import movieApi from '../../utils/MovieApi';
 
 function Register() {
+
+  const history = useHistory();
+
 
   const [name, setName] = React.useState('');
   const [email, setEmail] = React.useState('');
@@ -22,6 +29,12 @@ function Register() {
     evt.preventDefault();
 
     console.log('handle submit registaration');
+    movieApi.signUp({ name, email, password })
+      .then( (res) => {
+        // console.log('res signup', res);
+        history.push('/signin');
+      })
+      .catch( (err) => console.log(err));
   }
 
   return (

@@ -1,12 +1,12 @@
 import BaseApi from "./BaseApi";
 
 
-class MovieApi extends BaseApi {
+class MovieApiClass extends BaseApi {
 
 
   /* регистрация пользователя */
   signUp({ name, email, password }) {
-    this._request('/signup', { name, email, password }, 'POST');
+    return this._request('/signup', { name, email, password }, 'POST');
   }
 
   /* авторизация пользователя */
@@ -17,7 +17,7 @@ class MovieApi extends BaseApi {
 }
 
 
-const movieApi = new MovieApi({
+const movieApi = new MovieApiClass({
   baseUrl: 'https://api.movie.ampilovs.ru'
 });
 
