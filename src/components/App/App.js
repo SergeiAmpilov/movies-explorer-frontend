@@ -71,11 +71,20 @@ function App() {
       .catch( (err) => console.log(err));
   }
 
+  const handleDebugUser = () => {
+    movieApi.checkToken()
+      .then( (res) => {
+        console.log('debug user info');
+        console.log(res);
+      })
+      .catch( (err) => console.log(err));
+  }
+
   return (
     <div className="App">
       <Switch>
         <Route exact path='/'>
-          <Main />
+          <Main handleDebug={handleDebugUser}/>
         </Route>
         <Route path='/saved-movies'>
           <SavedMovies/>
