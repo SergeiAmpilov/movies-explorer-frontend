@@ -11,7 +11,20 @@ class MovieApiClass extends BaseApi {
 
   /* авторизация пользователя */
   signIn({ email, password }) {
-    return this._request('signin', {email, password}, 'POST');
+    return this._request('/signin', {email, password}, 'POST');
+  }
+
+  logout() {
+    return this._request('/signout', false, 'POST');
+  }
+
+  update({ name, email }) {
+    return this._request('/users/me', { name, email }, 'PATCH');
+  }
+
+  /* проверка валидности токена */
+  checkToken() {
+    return this._request('/users/me', false);
   }
 
 }

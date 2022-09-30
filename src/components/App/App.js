@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Route,
   Switch,
+  useHistory,
 } from "react-router-dom";
 
 
@@ -26,6 +27,8 @@ function App() {
 
   const [loggedIn, setLoggedIn] = React.useState(false);
 
+  const history = useHistory();
+
   const handleLogin = (email, password) => {
     movieApi.signIn({ email, password })
         .then( (res) => {
@@ -35,6 +38,37 @@ function App() {
         .catch((err) => {
             console.log(`Ошибка.....: ${err}`)
         })
+  }
+
+  const onLogout = () => {
+    movieApi.logout()
+        .then(()=>{
+            setLoggedIn(false);
+            history.push('/');
+        })
+        .catch((err) => {
+            console.log(`Ошибка.....: ${err}`)
+        });
+  }
+
+  const onUpdate = (name, email) => {
+    movieApi.update({ name, email })
+      .then( (res) => {
+        console.log('update +++');
+      })
+      .catch((err) => {
+          console.log(`Ошибка.....: ${err}`)
+      })
+  }
+
+  const handleRegister = (name, email, password) => {
+
+    movieApi.signUp({ name, email, password })
+      .then( (res) => {
+        console.log('register +++->');
+        history.push('/signin');
+      })
+      .catch( (err) => console.log(err));
   }
 
   return (
@@ -48,13 +82,16 @@ function App() {
         </Route>
         <Route path='/movies' component={Movies} />
         <Route path='/profile'>
-          <Profile />
+          <Profile 
+            handleLogout={onLogout}
+            handleUpdate={onUpdate}
+          />
         </Route>
         <Route path='/signin'>
           <Login onLogin={handleLogin} />
         </Route>
         <Route path='/signup'>
-          <Register />
+          <Register onRegister={handleRegister}/>
         </Route>
         <Route path="*">
           <PageNotFound />
