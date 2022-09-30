@@ -106,6 +106,19 @@ function App() {
     }
   }, [loggedIn]);
 
+  // проверка токена при первичном открытии сайта
+  React.useEffect(() => {
+    movieApi.checkToken()
+        .then((res) => {
+          console.log('check token on first open/ is auth true');
+            setLoggedIn(true);
+        })
+        .catch((err) => {
+            console.log(`Ошибка.....: ${err}`)
+        })
+
+  }, []);
+
   return (
     <currentUserContext.Provider value={currentUser}>
       <div className="App">
