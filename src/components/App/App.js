@@ -17,6 +17,7 @@ import PageNotFound from '../PageNotFound/PageNotFound';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
 import Profile from '../Profile/Profile';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 // import PopupMenu from '../PopupMenu/PopupMenu';
 
 import { currentUserContext } from '../../contexts/CurrentUserContext';
@@ -92,6 +93,19 @@ function App() {
       .catch( (err) => console.log(err));
   }
 
+    // проверка токена при первичном открытии сайта
+    React.useEffect(() => {
+      movieApi.checkToken()
+          .then((res) => {
+            console.log('check token on first open/ is auth true');
+              setLoggedIn(true);
+          })
+          .catch((err) => {
+              console.log(`Ошибка.....: ${err}`)
+          })
+  
+    }, []);
+
   /* set user for context */
   React.useEffect(() => {
     if (loggedIn) {
@@ -102,22 +116,11 @@ function App() {
             })
             .catch(err => console.log(`Ошибка.....: ${err}`));
 
-        history.push('/');
+        // history.push('/');
     }
   }, [loggedIn]);
 
-  // проверка токена при первичном открытии сайта
-  React.useEffect(() => {
-    movieApi.checkToken()
-        .then((res) => {
-          console.log('check token on first open/ is auth true');
-            setLoggedIn(true);
-        })
-        .catch((err) => {
-            console.log(`Ошибка.....: ${err}`)
-        })
 
-  }, []);
 
   return (
     <currentUserContext.Provider value={currentUser}>
@@ -126,16 +129,25 @@ function App() {
           <Route exact path='/'>
             <Main handleDebug={handleDebugUser}/>
           </Route>
-          <Route path='/saved-movies'>
-            <SavedMovies/>
-          </Route>
-          <Route path='/movies' component={Movies} />
-          <Route path='/profile'>
-            <Profile 
-              handleLogout={onLogout}
-              handleUpdate={onUpdate}
-            />
-          </Route>
+
+          <ProtectedRoute path="/saved-movies"
+            component={SavedMovies}
+            loggedIn = {loggedIn}
+          />
+
+          <ProtectedRoute path="/movies"
+            component={Movies}
+            loggedIn = {loggedIn}
+          />
+
+          <ProtectedRoute path="/profile"
+            component={Profile}
+            loggedIn = {loggedIn}
+            handleLogout={onLogout}
+            handleUpdate={onUpdate}
+          />
+
+
           <Route path='/signin'>
             <Login onLogin={handleLogin} />
           </Route>
