@@ -95,6 +95,7 @@ function App() {
   /* set user for context */
   React.useEffect(() => {
     if (loggedIn) {
+      console.log('try to update user info');
       movieApi.checkToken()
             .then((profileData) => {
                 setCurrentUser(profileData)
@@ -103,7 +104,7 @@ function App() {
 
         history.push('/');
     }
-}, [loggedIn]);
+  }, [loggedIn]);
 
   return (
     <currentUserContext.Provider value={currentUser}>
