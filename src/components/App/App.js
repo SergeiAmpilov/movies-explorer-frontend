@@ -34,6 +34,7 @@ function App() {
         .then( (res) => {
             setLoggedIn(true);
             console.log('set logged in +++');
+            console.log(res);
         })
         .catch((err) => {
             console.log(`Ошибка.....: ${err}`)
@@ -42,8 +43,10 @@ function App() {
 
   const onLogout = () => {
     movieApi.logout()
-        .then(()=>{
+        .then((res)=>{
             setLoggedIn(false);
+            console.log('res logout');
+            console.log(res);
             history.push('/');
         })
         .catch((err) => {
@@ -55,6 +58,7 @@ function App() {
     movieApi.update({ name, email })
       .then( (res) => {
         console.log('update +++');
+        console.log(res);
       })
       .catch((err) => {
           console.log(`Ошибка.....: ${err}`)
@@ -66,6 +70,7 @@ function App() {
     movieApi.signUp({ name, email, password })
       .then( (res) => {
         console.log('register +++->');
+        console.log(res);
         history.push('/signin');
       })
       .catch( (err) => console.log(err));
