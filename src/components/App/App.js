@@ -19,6 +19,8 @@ import Login from '../Login/Login';
 import Profile from '../Profile/Profile';
 // import PopupMenu from '../PopupMenu/PopupMenu';
 
+import { currentUserContext } from '../../contexts/CurrentUserContext';
+
 import movieApi from '../../utils/MovieApi';
 
 
@@ -26,6 +28,8 @@ import movieApi from '../../utils/MovieApi';
 function App() {
 
   const [loggedIn, setLoggedIn] = React.useState(false);
+  const [currentUser, setCurrentUser] = React.useState({});
+
 
   const history = useHistory();
 
@@ -81,38 +85,57 @@ function App() {
       .then( (res) => {
         console.log('debug user info');
         console.log(res);
+        console.log('context value currentUser');
+        console.log(currentUser);
+
       })
       .catch( (err) => console.log(err));
   }
 
+  /* set user for context */
+  React.useEffect(() => {
+    if (loggedIn) {
+      movieApi.checkToken()
+            .then((profileData) => {
+                setCurrentUser(profileData)
+            })
+            .catch(err => console.log(`Ошибка.....: ${err}`));
+
+        history.push('/');
+    }
+}, [loggedIn]);
+
   return (
-    <div className="App">
-      <Switch>
-        <Route exact path='/'>
-          <Main handleDebug={handleDebugUser}/>
-        </Route>
-        <Route path='/saved-movies'>
-          <SavedMovies/>
-        </Route>
-        <Route path='/movies' component={Movies} />
-        <Route path='/profile'>
-          <Profile 
-            handleLogout={onLogout}
-            handleUpdate={onUpdate}
-          />
-        </Route>
-        <Route path='/signin'>
-          <Login onLogin={handleLogin} />
-        </Route>
-        <Route path='/signup'>
-          <Register onRegister={handleRegister}/>
-        </Route>
-        <Route path="*">
-          <PageNotFound />
-        </Route>
-      </Switch>
-      
-    </div>
+    <currentUserContext.Provider value={currentUser}>
+      <div className="App">
+        <Switch>
+          <Route exact path='/'>
+            <Main handleDebug={handleDebugUser}/>
+          </Route>
+          <Route path='/saved-movies'>
+            <SavedMovies/>
+          </Route>
+          <Route path='/movies' component={Movies} />
+          <Route path='/profile'>
+            <Profile 
+              handleLogout={onLogout}
+              handleUpdate={onUpdate}
+            />
+          </Route>
+          <Route path='/signin'>
+            <Login onLogin={handleLogin} />
+          </Route>
+          <Route path='/signup'>
+            <Register onRegister={handleRegister}/>
+          </Route>
+          <Route path="*">
+            <PageNotFound />
+          </Route>
+        </Switch>
+        
+      </div>
+    </currentUserContext.Provider>
+
   );
 }
 
