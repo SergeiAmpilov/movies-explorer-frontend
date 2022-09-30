@@ -3,7 +3,21 @@ import React from 'react';
 import './Login.css';
 import promoLogo from '../../images/header-logo.svg';
 
-function Login() {
+
+
+function Login({ onLogin }) {
+
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
+
+  const handleChangeEmail = (evt) => setEmail(evt.target.value);
+  const handleChangePassword = (evt) => setPassword(evt.target.value);
+
+  const handleLogin = (evt) => {
+    evt.preventDefault();
+    onLogin(email, password);
+  }  
+
   return (
     <section className='login'>
       <div className='register__container'>
@@ -13,7 +27,7 @@ function Login() {
           </a>        
           <h1 className='register__title'>Рады видеть!</h1>
         </div>
-        <form className='register__form'>
+        <form className='register__form' onSubmit={handleLogin}>
           <label className='register__form_group'>
             <p className='register__form_field-title'>E-mail</p>            
             <input
@@ -22,6 +36,7 @@ function Login() {
               placeholder='help@yandex.ru'
               name='email'
               id="email-input"
+              onChange={handleChangeEmail}
               required
             />
             <p className="register__form_field-error email-input-error">Сообщение об ошибке</p>
@@ -35,6 +50,7 @@ function Login() {
               name='password'
               id="password-input"
               minLength="6"
+              onChange={handleChangePassword}
               required
             />
             <p className="register__form_field-error register__form_field-error_visible password-input-error">Сообщение об ошибке</p>

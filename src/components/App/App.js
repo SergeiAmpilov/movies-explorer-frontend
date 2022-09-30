@@ -16,11 +16,27 @@ import PageNotFound from '../PageNotFound/PageNotFound';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
 import Profile from '../Profile/Profile';
-import PopupMenu from '../PopupMenu/PopupMenu';
+// import PopupMenu from '../PopupMenu/PopupMenu';
+
+import movieApi from '../../utils/MovieApi';
 
 
 
 function App() {
+
+  const [loggedIn, setLoggedIn] = React.useState(false);
+
+  const handleLogin = (email, password) => {
+    movieApi.signIn({ email, password })
+        .then( (res) => {
+            setLoggedIn(true);
+            console.log('set logged in +++');
+        })
+        .catch((err) => {
+            console.log(`Ошибка.....: ${err}`)
+        })
+  }
+
   return (
     <div className="App">
       <Switch>
@@ -35,7 +51,7 @@ function App() {
           <Profile />
         </Route>
         <Route path='/signin'>
-          <Login />
+          <Login onLogin={handleLogin} />
         </Route>
         <Route path='/signup'>
           <Register />

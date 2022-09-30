@@ -21,17 +21,12 @@ function Register() {
   const handleChangeEmail = (evt) => setEmail(evt.target.value);
   const handleChangePassword = (evt) => setPassword(evt.target.value);
 
-
-
-
-
   const handleSubmitRigister = (evt) => {
     evt.preventDefault();
 
     console.log('handle submit registaration');
     movieApi.signUp({ name, email, password })
       .then( (res) => {
-        // console.log('res signup', res);
         history.push('/signin');
       })
       .catch( (err) => console.log(err));
