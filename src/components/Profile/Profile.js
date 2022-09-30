@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'; 
 
 import './Profile.css';
 import Header from '../Header/Header';
@@ -57,8 +58,11 @@ function Profile({ handleLogout, handleUpdate }) {
         </label>
         <div className='profile__form_footer'>
           <button className='profile__form_button' type='submit'>Редактировать</button>
-          <a className='profile__logout-link'
-              onClick={handleLogoutClick} href='/'>Выйти из аккаунта</a>
+          <Link to='/' className='profile__logout-link' onClick={handleLogoutClick}>
+            Выйти из аккаунта
+          </Link>
+          {/* <a className='profile__logout-link'
+              onClick={handleLogoutClick} href='/'>Выйти из аккаунта</a> */}
         </div>
       </form>
       

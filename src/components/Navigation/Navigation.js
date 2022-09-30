@@ -1,5 +1,5 @@
 import React from 'react';
-// import { Link, NavLink } from 'react-router-dom'; 
+import { Link, NavLink } from 'react-router-dom'; 
 
 import './Navigation.css';
 import accLogo from '../../images/acc-icon.svg';
@@ -18,14 +18,30 @@ function Navigation({ loggedIn }) {
       { loggedIn ? (
         <nav className='navigation'>
           <div className='navigation__group_film'>
-            <a 
+            <NavLink
+              to="/movies"
+              className='navigation__link navigation__link_movie'
+              activeClassName='navigation__link_active'
+              >
+              Фильмы
+            </NavLink>
+            <NavLink
+              to="/saved-movies"
+              className='navigation__link navigation__link_movie'
+              activeClassName='navigation__link_active'
+              >
+              Сохраненные фильмы
+            </NavLink>
+            {/* <a 
               href="/movies"
-              className='navigation__link navigation__link_movie navigation__link_active'>Фильмы</a>
+              className='navigation__link navigation__link_movie navigation__link_active'>
+                Фильмы
+            </a>
             <a
               href="/saved-movies"
               className='navigation__link navigation__link_movie'>
                 Сохраненные фильмы
-            </a>
+            </a> */}
           </div>
           
           <div>
