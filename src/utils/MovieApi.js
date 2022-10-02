@@ -27,6 +27,20 @@ class MovieApiClass extends BaseApi {
     return this._request('/users/me', false);
   }
 
+  /* получение всех карточек пользователя */
+
+  getFilms() {
+    return this._request('/movies');
+  }
+
+  addFilm(body) {
+    return this._request('/movies', body, 'POST');
+  }
+
+  removeFilm(movieId) {
+    return this._request(`/movies/${movieId}`, false, 'DELETE');
+  }
+
 }
 
 

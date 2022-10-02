@@ -98,18 +98,22 @@ function App() {
       .catch( (err) => console.log(err));
   }
 
-    // проверка токена при первичном открытии сайта
-    React.useEffect(() => {
-      movieApi.checkToken()
-          .then((res) => {
-            console.log('check token on first open/ is auth true');
-              setLoggedIn(true);
-          })
-          .catch((err) => {
-              console.log(`Ошибка.....: ${err}`)
-          })
-  
-    }, []);
+  const handleMovieAdd = (cardParams) => {
+    console.log('handleCardAdd', cardParams)
+  };
+
+  // проверка токена при первичном открытии сайта
+  React.useEffect(() => {
+    movieApi.checkToken()
+        .then((res) => {
+          console.log('check token on first open/ is auth true');
+            setLoggedIn(true);
+        })
+        .catch((err) => {
+            console.log(`Ошибка.....: ${err}`)
+        })
+
+  }, []);
 
   /* set user for context */
   React.useEffect(() => {
@@ -147,6 +151,7 @@ function App() {
           <ProtectedRoute path="/movies"
             component={Movies}
             loggedIn = {loggedIn}
+            handleMovieAdd={handleMovieAdd}
           />
 
           <ProtectedRoute path="/profile"

@@ -2,7 +2,22 @@ import React from 'react';
 
 import './MoviesCard.css';
 
-function MoviesCard({img, title, duration, isSaved}) {
+function MoviesCard({
+  image,
+  title,
+  duration,
+  isSaved,
+  movieId,
+  nameRU,
+  nameEN,
+  thumbnail,
+  trailerLink,
+  description,
+  year,
+  director,
+  country,
+  handleMovieAdd
+  }) {
 
   let buttonClass;
   const isFavourite = true;
@@ -18,11 +33,17 @@ function MoviesCard({img, title, duration, isSaved}) {
 
   return(
     <li className='card'>
-      <img src={img} className='card__img' alt={`Фильм ${title}`}/>
+      <img src={image} className='card__img' alt={`Фильм ${title}`}/>
       <div className='card__container'>
         <div className='card__title-group'>
           <p className='card__title'>{title}</p>
-          <button type='button' className={`card__favourite-button ${buttonClass}`}/>
+          <button
+            type='button'
+            className={`card__favourite-button ${buttonClass}`}
+            onClick={()=>{
+              handleMovieAdd({movieId, nameRU})
+            }}
+          />
         </div>      
         <p className='card__duration'>{durationText}</p>
       </div>

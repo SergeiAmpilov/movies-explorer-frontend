@@ -2,7 +2,6 @@ import React from 'react';
 
 import './Movies.css';
 
-import Header from '../Header/Header';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import EmptyQuery from '../EmptyQuery/EmptyQuery';
@@ -10,7 +9,7 @@ import Footer from '../Footer/Footer';
 
 
 
-function Movies() {
+function Movies({ handleMovieAdd }) {
 
   const [isPreloaderVisible, setIsPreloaderVisible] = React.useState(false);
   const [isEmptyQuery, setIsEmptyQuery] = React.useState({
@@ -46,6 +45,7 @@ function Movies() {
                 isSaved={false}
                 isPreloaderVisible={isPreloaderVisible}
                 movieCardList={movieCardList}
+                handleMovieAdd={handleMovieAdd}
               />          
           }
       </main>
