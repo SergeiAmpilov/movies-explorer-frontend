@@ -5,27 +5,25 @@ import Navigation from '../Navigation/Navigation';
 import promoLogo from '../../images/header-logo.svg';
 
 
-function Header({ loggedIn, handleBurger }) {
-  const headerClass = loggedIn ? 'header header__auth' : 'header' ;
+function Header({ loggedInHeader }) {
+
+
+  const headerClass = loggedInHeader ? 'header header__auth' : 'header' ;
+
   return (
     <>
-      <header className={`header-main ${loggedIn && 'header-main__black'}`}>
+      <header className={`header-main ${loggedInHeader && 'header-main__black'}`}>
         <div className='section-container'>
           <div className={headerClass}>          
             <a href='/'>
               <img src={promoLogo} alt="Логотип меню" className="header__logo"/>
             </a>
             <Navigation
-              loggedIn={loggedIn}
-              handleBurger={handleBurger}
+              loggedInHeader={loggedInHeader}
             />
           </div>
         </div>
       </header>
-
-
-
-
     </>
   );
 }

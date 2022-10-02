@@ -58,7 +58,7 @@ function SavedMovies({ handleBurger }) {
   const showEmptyQuery = () => { console.log('showEmptyQuery')};
   return (
     <>
-      <Header loggedIn={true} handleBurger={handleBurger} />
+      {/* <Header loggedIn={true} handleBurger={handleBurger} /> */}
       <main className='movies saved-movies'>
         <SearchForm 
           showPreloader={showPreloader}

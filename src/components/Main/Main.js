@@ -17,12 +17,9 @@ function Main({ handleDebug }) {
 
   return (
     <>
-      <Header
+      {/* <Header
         loggedIn={false}
-      />
-      <button
-        onClick={ (evt) => {evt.preventDefault(); handleDebug(); }}
-        type='button'>Debug</button>
+      /> */}
       <main>
         <Promo />
         <AboutProject />

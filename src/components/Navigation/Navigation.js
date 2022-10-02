@@ -7,43 +7,30 @@ import PopupMenu from '../PopupMenu/PopupMenu';
 
 
 
-function Navigation({ loggedIn }) {
+function Navigation({ loggedInHeader }) {
   const [isPopupVisible, setIsPopupVisible ] = React.useState(false);
 
   const handleBurgerOpen = () => setIsPopupVisible(!isPopupVisible);
+  const activeClassNameMovies = window.location.pathname ==='/movies' ? 'navigation__link_active' : '';
+  const activeClassNameSavedMovies = window.location.pathname ==='/saved-movies' ? 'navigation__link_active' : '';
 
 
   return (
     <>
-      { loggedIn ? (
+      { loggedInHeader ? (
         <nav className='navigation'>
           <div className='navigation__group_film'>
-            <NavLink
-              to="/movies"
-              className='navigation__link navigation__link_movie'
-              activeClassName='navigation__link_active'
-              >
-              Фильмы
-            </NavLink>
-            <NavLink
-              to="/saved-movies"
-              className='navigation__link navigation__link_movie'
-              activeClassName='navigation__link_active'
-              >
-              Сохраненные фильмы
-            </NavLink>
-            {/* <a 
+            <a 
               href="/movies"
-              className='navigation__link navigation__link_movie navigation__link_active'>
+              className={`navigation__link navigation__link_movie ${activeClassNameMovies}`}>
                 Фильмы
             </a>
             <a
               href="/saved-movies"
-              className='navigation__link navigation__link_movie'>
+              className={`navigation__link navigation__link_movie ${activeClassNameSavedMovies}`}>
                 Сохраненные фильмы
-            </a> */}
-          </div>
-          
+            </a>
+          </div>          
           <div>
             <a
               href="/profile"

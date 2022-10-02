@@ -3,6 +3,7 @@ import {
   Route,
   Switch,
   useHistory,
+  useLocation,
 } from "react-router-dom";
 
 
@@ -19,6 +20,8 @@ import Login from '../Login/Login';
 import Profile from '../Profile/Profile';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 // import PopupMenu from '../PopupMenu/PopupMenu';
+import Header from '../Header/Header';
+
 
 import { currentUserContext } from '../../contexts/CurrentUserContext';
 
@@ -27,6 +30,7 @@ import movieApi from '../../utils/MovieApi';
 
 
 function App() {
+  const { pathname } = useLocation();
 
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [currentUser, setCurrentUser] = React.useState({});
@@ -115,20 +119,20 @@ function App() {
                 setCurrentUser(profileData)
             })
             .catch(err => console.log(`Ошибка.....: ${err}`));
-
-        // history.push('/');
     }
   }, [loggedIn]);
 
 
-  /* я понял почему не работает роутер - он не работает, потому что сверху
-  должен быть хэдер с навлином, и внутри компонент свитч. и в этом свитече должны уже 
-  быть прописаны пути */
 
 
   return (
     <currentUserContext.Provider value={currentUser}>
       <div className="App">
+        { pathname !== '/signup' && pathname !== '/signin' &&
+          <Header
+            loggedInHeader={pathname !== '/'}
+          />
+        }
         <Switch>
           <Route exact path='/'>
             <Main handleDebug={handleDebugUser}/>

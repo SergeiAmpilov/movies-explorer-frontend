@@ -32,7 +32,7 @@ function Movies() {
 
   return (
     <>
-      <Header loggedIn={true} />
+      {/* <Header loggedIn={true} /> */}
       <main className='movies'>
           <SearchForm 
             showPreloader={showPreloader}
