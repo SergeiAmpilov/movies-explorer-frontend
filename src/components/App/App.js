@@ -19,7 +19,6 @@ import Register from '../Register/Register';
 import Login from '../Login/Login';
 import Profile from '../Profile/Profile';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-// import PopupMenu from '../PopupMenu/PopupMenu';
 import Header from '../Header/Header';
 
 
@@ -44,6 +43,8 @@ function App() {
             setLoggedIn(true);
             console.log('set logged in +++');
             console.log(res);
+
+            history.push('/movies');
         })
         .catch((err) => {
             console.log(`Ошибка.....: ${err}`)
