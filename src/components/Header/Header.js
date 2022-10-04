@@ -17,10 +17,10 @@ function Header({ loggedIn }) {
     <>
       <header className={`header-main ${location.pathname !== '/' && 'header-main__black'}`}>
         <div className='section-container'>
-          <div className={headerClass}>         
-            <a href='/'>
+          <div className={headerClass}>
+            <Link to='/'>
               <img src={promoLogo} alt="Логотип меню" className="header__logo"/>
-            </a>
+            </Link>
             <Navigation
               loggedInHeader={loggedIn}
             />

@@ -11,8 +11,8 @@ function Navigation({ loggedInHeader }) {
   const [isPopupVisible, setIsPopupVisible ] = React.useState(false);
 
   const handleBurgerOpen = () => setIsPopupVisible(!isPopupVisible);
-  const activeClassNameMovies = window.location.pathname ==='/movies' ? 'navigation__link_active' : '';
-  const activeClassNameSavedMovies = window.location.pathname ==='/saved-movies' ? 'navigation__link_active' : '';
+  // const activeClassNameMovies = window.location.pathname ==='/movies' ? 'navigation__link_active' : '';
+  // const activeClassNameSavedMovies = window.location.pathname ==='/saved-movies' ? 'navigation__link_active' : '';
 
 
   return (
@@ -20,36 +20,36 @@ function Navigation({ loggedInHeader }) {
       { loggedInHeader ? (
         <nav className='navigation'>
           <div className='navigation__group_film'>
-            <a 
-              href="/movies"
-              className={`navigation__link navigation__link_movie ${activeClassNameMovies}`}>
-                Фильмы
-            </a>
-            <a
-              href="/saved-movies"
-              className={`navigation__link navigation__link_movie ${activeClassNameSavedMovies}`}>
-                Сохраненные фильмы
-            </a>
+            <NavLink
+              to="/movies"
+              className={`navigation__link navigation__link_movie`}
+              activeClassName='navigation__link_active'>
+              Фильмы
+            </NavLink>
+            <NavLink
+              to="/saved-movies"
+              className={`navigation__link navigation__link_movie`}
+              activeClassName='navigation__link_active'>
+              Сохраненные фильмы
+            </NavLink>
           </div>          
           <div>
-            <a
-              href="/profile"
-              className='navigation__link navigation__link_account'>
-                <img
-                  src={accLogo}
-                  className='navigation__link_account-logo'
-                  alt='Логотип пользовательского аккаунта'
-                />
-                Аккаунт
-            </a>
+            <Link to='/profile' className='navigation__link navigation__link_account'>
+              <img
+                src={accLogo}
+                className='navigation__link_account-logo'
+                alt='Логотип пользовательского аккаунта'
+              />
+              Аккаунт
+            </Link>
           </div>
           <button type='button' className='navigation__burger-button' onClick={handleBurgerOpen}></button>
         </nav>
       ) :      
       (
         <nav className='navigation__auth'>
-          <a className='navigation__link navigation__link_auth' href='/signup'>Регистрация</a>
-          <a className='navigation__link navigation__link_auth navigation__green-link' href='/signin'>Войти</a>
+          <Link to='/signup' className='navigation__link navigation__link_auth'>Регистрация</Link>
+          <Link to='/signin' className='navigation__link navigation__link_auth navigation__green-link'>Войти</Link>
         </nav>
       )}
       <PopupMenu

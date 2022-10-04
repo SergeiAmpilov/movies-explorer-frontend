@@ -1,6 +1,8 @@
 import React from 'react';
 import {
   Route,
+  Router,
+  Routes,
   Switch,
   useHistory,
   useLocation,
@@ -179,9 +181,6 @@ function App() {
           />
         </Route>
         <Switch>
-          <Route exact path='/'>
-            <Main />
-          </Route>
           <Route exact path='/signup'>
             <Register onRegister={handleRegister}/>
           </Route>
@@ -205,6 +204,9 @@ function App() {
             handleLogout={onLogout}
             handleUpdate={onUpdate}
           />
+          <Route exact path='/'>
+            <Main />
+          </Route>
           <Route path="*">
             <PageNotFound />
           </Route>
