@@ -9,7 +9,7 @@ import Footer from '../Footer/Footer';
 
 
 
-function Movies({ handleMovieAdd }) {
+function Movies({ handleMovieAdd, handleMovieRemove, getFavMovieList }) {
 
   const [isPreloaderVisible, setIsPreloaderVisible] = React.useState(false);
   const [isEmptyQuery, setIsEmptyQuery] = React.useState({
@@ -46,6 +46,8 @@ function Movies({ handleMovieAdd }) {
                 isPreloaderVisible={isPreloaderVisible}
                 movieCardList={movieCardList}
                 handleMovieAdd={handleMovieAdd}
+                handleMovieRemove={handleMovieRemove}
+                getFavMovieList={getFavMovieList}
               />          
           }
       </main>

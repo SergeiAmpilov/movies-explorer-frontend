@@ -33,7 +33,7 @@ function App() {
 
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [currentUser, setCurrentUser] = React.useState({});
-
+  const [favMovieList, setFavMovieList] = React.useState([]);
 
   const history = useHistory();
 
@@ -99,31 +99,56 @@ function App() {
   }
 
   const handleMovieAdd = (cardParams) => {
-    console.log('handleCardAdd', cardParams)
+    movieApi.addFilm(cardParams)
+      .then((res) => {
+        console.log('res movie add', res);
+        setFavMovieList(favMovieList.push(res));
+        return res._id;
+      })
+      .catch(err => console.log(`Ошибка.....: ${err}`));
   };
+
+  /* нужно передать тот id, что есть в базе данных - не во внешнем сервисе */
+  const handleMovieRemove = (movieIdDb) => {
+    if (!movieIdDb) {
+      return ;
+    }
+    
+    movieApi.removeFilm(movieIdDb)
+      .then( (res) => {
+        console.log('res remove', res);
+        const curMovieList = favMovieList.filter( movie => movie._id !== movieIdDb )
+        setFavMovieList(curMovieList);
+      })
+      .catch(err => console.log(`Ошибка.....: ${err}`));
+  }
+
+  const getFavMovieList = () => favMovieList ;
 
   // проверка токена при первичном открытии сайта
   React.useEffect(() => {
     movieApi.checkToken()
         .then((res) => {
-          console.log('check token on first open/ is auth true');
-            setLoggedIn(true);
+          setLoggedIn(true);
         })
-        .catch((err) => {
-            console.log(`Ошибка.....: ${err}`)
-        })
-
+        .catch((err) => console.log(`Ошибка.....: ${err}`));
   }, []);
 
   /* set user for context */
   React.useEffect(() => {
     if (loggedIn) {
-      console.log('try to update user info');
       movieApi.checkToken()
-            .then((profileData) => {
-                setCurrentUser(profileData)
-            })
-            .catch(err => console.log(`Ошибка.....: ${err}`));
+        .then((profileData) => {
+            setCurrentUser(profileData)
+        })
+        .catch(err => console.log(`Ошибка.....: ${err}`));
+
+      movieApi.getFilms()
+        .then(setFavMovieList)
+        .catch(err => console.log(`Ошибка.....: ${err}`));
+
+    } else {
+      setFavMovieList([]);
     }
   }, [loggedIn]);
 
@@ -152,6 +177,8 @@ function App() {
             component={Movies}
             loggedIn = {loggedIn}
             handleMovieAdd={handleMovieAdd}
+            handleMovieRemove={handleMovieRemove}
+            getFavMovieList={getFavMovieList}
           />
 
           <ProtectedRoute path="/profile"

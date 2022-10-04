@@ -16,11 +16,16 @@ function MoviesCard({
   year,
   director,
   country,
-  handleMovieAdd
+  handleMovieAdd,
+  handleMovieRemove,
+  isFavourite,
+  _id /* id фильма в нашей базе данных если он фаворит */
   }) {
 
+  const [isCardFavourite, setIsCardFavourite] = React.useState(isFavourite);
+  const [idDb, setIdDb] = React.useState(_id);
+
   let buttonClass;
-  const isFavourite = true;
   const hours = Math.floor(duration / 60);
   const minutes = duration - hours * 60;
   const durationText = (hours ? `${hours}ч` : '') + `${minutes}м`;
@@ -28,7 +33,30 @@ function MoviesCard({
   if (isSaved) {
     buttonClass = 'card__favourite-button_isSaved';
   } else {
-    buttonClass = isFavourite ? 'card__favourite-button_isfav' : 'card__favourite-button_notfav';    
+    buttonClass = isCardFavourite ? 'card__favourite-button_isfav' : 'card__favourite-button_notfav';    
+  }
+
+  const handleButtonToggle = () => {
+    setIsCardFavourite(!isCardFavourite);
+
+    if (isCardFavourite) {
+      let newIdDb = handleMovieAdd({
+        nameRU,
+        nameEN,
+        movieId,
+        thumbnail,
+        trailerLink,
+        image,
+        description,
+        year,
+        duration,
+        director,
+        country,
+      });
+      setIdDb(newIdDb);
+    } else {
+      handleMovieRemove(idDb);
+    }
   }
 
   return(
@@ -40,8 +68,9 @@ function MoviesCard({
           <button
             type='button'
             className={`card__favourite-button ${buttonClass}`}
-            onClick={()=>{
-              handleMovieAdd({movieId, nameRU})
+            onClick={() => {
+              handleButtonToggle();
+
             }}
           />
         </div>      
