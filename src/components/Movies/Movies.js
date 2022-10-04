@@ -17,7 +17,6 @@ function Movies({ handleMovieAdd, handleMovieRemove, getFavMovieList }) {
     message: ''
   });
   const [movieCardList, setMovieCardList] = React.useState([]);
-  // затвра с этого момента продолжу. мне пока не понятно как вызвать рендеринг
 
   const showPreloader = () => { 
     setIsPreloaderVisible(true);
@@ -30,8 +29,7 @@ function Movies({ handleMovieAdd, handleMovieRemove, getFavMovieList }) {
 
 
   return (
-    <>
-      {/* <Header loggedIn={true} /> */}
+    
       <main className='movies'>
           <SearchForm 
             showPreloader={showPreloader}
@@ -50,11 +48,7 @@ function Movies({ handleMovieAdd, handleMovieRemove, getFavMovieList }) {
                 getFavMovieList={getFavMovieList}
               />          
           }
-      </main>
-      <Footer />
-
-    </>
-      
+      </main>    
     
 
   );

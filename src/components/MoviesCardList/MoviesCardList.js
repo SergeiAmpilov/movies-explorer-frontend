@@ -17,6 +17,7 @@ function MoviesCardList({
   handleMovieRemove,
   getFavMovieList }) {
 
+    /*
   const curMovieList = getFavMovieList();
   console.log('get movies from local', curMovieList);
 
@@ -28,7 +29,7 @@ function MoviesCardList({
       return arFilterd[0]._id;
     }
   };
-
+*/
   const cardsElements = movieCardList.map( card => <MoviesCard 
     image={`${api.getSiteUrl()}${card.image.url}`}
     key={card.id}
@@ -38,7 +39,7 @@ function MoviesCardList({
     movieId={card.id} /* это id в стороннем сервисе */
     nameRU={card.nameRU}
     nameEN={card.nameEN}
-    thumbnail={`${api.getSiteUrl()}${card.image.formats.thumbnail.url}`}
+    // thumbnail={`${api.getSiteUrl()}${card.image.formats.thumbnail.url}`}
     trailerLink={card.trailerLink}
     description={card.description}
     year={card.year}
@@ -46,8 +47,8 @@ function MoviesCardList({
     country={card.country}
     handleMovieAdd={handleMovieAdd}
     handleMovieRemove={handleMovieRemove}
-    isFavourite={getInnerMovieId(card.id) !== false } /* признак того, что данная карточка уже находится в списке сохраненных */
-    _id={getInnerMovieId(card.id)} /* id карточки в базе данных сервиса, либо false если это не фаворит */
+    isFavourite={true } /* признак того, что данная карточка уже находится в списке сохраненных */
+    _id={111} /* id карточки в базе данных сервиса, либо false если это не фаворит */
   /> );
 
   return isPreloaderVisible

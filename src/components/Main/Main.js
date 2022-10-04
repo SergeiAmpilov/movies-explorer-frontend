@@ -16,19 +16,13 @@ import Header from '../Header/Header';
 function Main({ handleDebug }) {
 
   return (
-    <>
-      {/* <Header
-        loggedIn={false}
-      /> */}
-      <main>
-        <Promo />
-        <AboutProject />
-        <Techs />
-        <AboutMe />
-        <Portfolio />
-      </main>
-      <Footer />
-    </>
+    <main>
+      <Promo />
+      <AboutProject />
+      <Techs />
+      <AboutMe />
+      <Portfolio />
+    </main>
   );
 }
 

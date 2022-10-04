@@ -20,6 +20,7 @@ import Login from '../Login/Login';
 import Profile from '../Profile/Profile';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
 
 
 import { currentUserContext } from '../../contexts/CurrentUserContext';
@@ -29,14 +30,23 @@ import movieApi from '../../utils/MovieApi';
 
 
 function App() {
-  const { pathname } = useLocation();
 
-  const [loggedIn, setLoggedIn] = React.useState(false);
+  const [loggedIn, setLoggedIn] = React.useState(true); // false
   const [currentUser, setCurrentUser] = React.useState({});
-  const [favMovieList, setFavMovieList] = React.useState([]);
 
-  const history = useHistory();
 
+  const headerEndpoints = ['/', '/movies', '/saved-movies', '/profile'];
+  const footerEndpoints = ['/', '/movies', '/saved-movies'];
+
+  const handleRegister = () => {};
+  const handleLogin = () => {};
+
+  const handleMovieAdd = () => {};
+  const handleMovieRemove = () => {};
+
+  const onLogout = () => {};
+  const onUpdate = () => {};
+  /* 
   const handleLogin = (email, password) => {
     movieApi.signIn({ email, password })
         .then( (res) => {
@@ -107,8 +117,10 @@ function App() {
       })
       .catch(err => console.log(`Ошибка.....: ${err}`));
   };
+  */
 
   /* нужно передать тот id, что есть в базе данных - не во внешнем сервисе */
+  /*
   const handleMovieRemove = (movieIdDb) => {
     if (!movieIdDb) {
       return ;
@@ -133,8 +145,10 @@ function App() {
         })
         .catch((err) => console.log(`Ошибка.....: ${err}`));
   }, []);
+  */
 
   /* set user for context */
+  /*
   React.useEffect(() => {
     if (loggedIn) {
       movieApi.checkToken()
@@ -151,12 +165,57 @@ function App() {
       setFavMovieList([]);
     }
   }, [loggedIn]);
+  */
 
 
 
 
   return (
-    <currentUserContext.Provider value={currentUser}>
+    <div className="App">
+      <currentUserContext.Provider value={currentUser}>
+        <Route exact path={headerEndpoints}>
+          <Header
+            loggedIn={loggedIn}
+          />
+        </Route>
+        <Switch>
+          <Route exact path='/'>
+            <Main />
+          </Route>
+          <Route exact path='/signup'>
+            <Register onRegister={handleRegister}/>
+          </Route>
+          <Route exact path='/signin'>
+            <Login onLogin={handleLogin} />
+          </Route>
+          <ProtectedRoute
+            path='/movies'
+            component={Movies}
+            loggedIn={loggedIn}
+            handleMovieAdd={handleMovieAdd}
+            handleMovieRemove={handleMovieRemove}
+          />
+          <ProtectedRoute path="/saved-movies"
+            component={SavedMovies}
+            loggedIn = {loggedIn}
+          />
+          <ProtectedRoute path="/profile"
+            component={Profile}
+            loggedIn = {loggedIn}
+            handleLogout={onLogout}
+            handleUpdate={onUpdate}
+          />
+          <Route path="*">
+            <PageNotFound />
+          </Route>
+        </Switch>
+        <Route exact path={footerEndpoints}>
+          <Footer />
+        </Route>
+      </currentUserContext.Provider>
+
+
+    {/* 
       <div className="App">
         { pathname !== '/signup' && pathname !== '/signin' &&
           <Header
@@ -200,8 +259,9 @@ function App() {
           </Route>
         </Switch>
         
+       */}
       </div>
-    </currentUserContext.Provider>
+
 
   );
 }

@@ -57,8 +57,6 @@ function SavedMovies({ handleBurger }) {
   const hidePreloader = () => { console.log('hidePreloader')};
   const showEmptyQuery = () => { console.log('showEmptyQuery')};
   return (
-    <>
-      {/* <Header loggedIn={true} handleBurger={handleBurger} /> */}
       <main className='movies saved-movies'>
         <SearchForm 
           showPreloader={showPreloader}
@@ -67,9 +65,6 @@ function SavedMovies({ handleBurger }) {
         />
         <MoviesCardList isSaved={true} movieCardList={cardList}  />
       </main>
-      <Footer />
-
-    </>
   );
 }
 
