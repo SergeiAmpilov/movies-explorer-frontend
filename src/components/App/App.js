@@ -34,18 +34,69 @@ function App() {
   const [loggedIn, setLoggedIn] = React.useState(false); // false
   const [currentUser, setCurrentUser] = React.useState({});
 
+  const history = useHistory();
+
 
   const headerEndpoints = ['/', '/movies', '/saved-movies', '/profile'];
   const footerEndpoints = ['/', '/movies', '/saved-movies'];
 
-  const handleRegister = () => {};
-  const handleLogin = () => {};
+  const handleRegister = (name, email, password) => {
+    movieApi.signUp({ name, email, password })
+      .then( (res) => {
+        handleLogin(email, password);
+      })
+      .catch( (err) => console.log(err));
+  }
+
+  const handleLogin = (email, password) => {
+    movieApi.signIn({ email, password })
+        .then((res) => {
+          setLoggedIn(true);
+          history.push('/movies');
+        })
+        .catch((err) => console.log(`Ошибка.....: ${err}`))
+  }
 
   const handleMovieAdd = () => {};
   const handleMovieRemove = () => {};
 
-  const onLogout = () => {};
-  const onUpdate = () => {};
+  const onLogout = () => {
+    movieApi.logout()
+        .then((res)=> setLoggedIn(false))
+        .catch((err) => console.log(`Ошибка.....: ${err}`));
+  }
+
+  const onUpdate = (name, email) => {
+    movieApi.update({ name, email })
+      .then( (res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+          console.log(`Ошибка.....: ${err}`)
+      })
+  }
+
+    // проверка токена при первичном открытии сайта
+    React.useEffect(() => {
+      movieApi.checkToken()
+          .then((res) => {
+            setLoggedIn(true);
+          })
+          .catch((err) => console.log(`Ошибка.....: ${err}`));
+    }, []);
+
+  React.useEffect(() => {
+    if (loggedIn) {
+      movieApi.checkToken()
+        .then((profileData) => {
+            setCurrentUser(profileData)
+        })
+        .catch(err => console.log(`Ошибка.....: ${err}`));
+    }
+  }, [loggedIn]);
+
+
+
   /* 
   const handleLogin = (email, password) => {
     movieApi.signIn({ email, password })
