@@ -1,8 +1,6 @@
 import React from 'react';
 import {
   Route,
-  Router,
-  Routes,
   Switch,
   useHistory,
   useLocation,
@@ -33,7 +31,7 @@ import movieApi from '../../utils/MovieApi';
 
 function App() {
 
-  const [loggedIn, setLoggedIn] = React.useState(true); // false
+  const [loggedIn, setLoggedIn] = React.useState(false); // false
   const [currentUser, setCurrentUser] = React.useState({});
 
 
