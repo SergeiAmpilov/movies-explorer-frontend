@@ -6,7 +6,7 @@ function MoviesCard({
   image,
   title,
   duration,
-  isSaved,
+  isSaved, /* признак того, что это страница с сохраненными ильмами */
   movieId,
   nameRU,
   nameEN,
@@ -23,7 +23,7 @@ function MoviesCard({
   }) {
 
   const [isCardFavourite, setIsCardFavourite] = React.useState(isFavourite);
-  const [idDb, setIdDb] = React.useState(_id);
+  // const [idDb, setIdDb] = React.useState(_id);
 
   let buttonClass;
   const hours = Math.floor(duration / 60);
@@ -36,10 +36,18 @@ function MoviesCard({
     buttonClass = isCardFavourite ? 'card__favourite-button_isfav' : 'card__favourite-button_notfav';    
   }
 
+
+
   const handleButtonToggle = () => {
-    setIsCardFavourite(!isCardFavourite);
+
+
+    console.log('click button toggle. state is', isCardFavourite);
 
     if (isCardFavourite) {
+      console.log('tru to remove card from fav');
+      handleMovieRemove(_id);
+    } else {
+      console.log('tru to add card to fav');
       handleMovieAdd({
         nameRU,
         nameEN,
@@ -52,12 +60,9 @@ function MoviesCard({
         duration,
         director,
         country,
-      }).then((res) => {
-        setIdDb(res._id);
       })
-    } else {
-      handleMovieRemove(idDb);
     }
+    setIsCardFavourite(!isCardFavourite);
   }
 
   return(

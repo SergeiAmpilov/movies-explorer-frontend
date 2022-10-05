@@ -31,8 +31,9 @@ import movieApi from '../../utils/MovieApi';
 
 function App() {
 
-  const [loggedIn, setLoggedIn] = React.useState(false); // false
+  const [loggedIn, setLoggedIn] = React.useState(false);
   const [currentUser, setCurrentUser] = React.useState({});
+  const [favMovieList, setFavMovieList] = React.useState([]); /* список любимых фильмов текущего пользователя */
 
   const history = useHistory();
 
@@ -58,10 +59,10 @@ function App() {
   }
 
   const handleMovieAdd = (cardParams) => {
-    return movieApi.addFilm(cardParams)
+    movieApi.addFilm(cardParams)
       .then((res) => {
         console.log('res movie add', res);
-        return res;
+        setFavMovieList(favMovieList.push(res));
       })
       .catch(err => console.log(`Ошибка.....: ${err}`));
   };
@@ -80,7 +81,10 @@ function App() {
 
   const onLogout = () => {
     movieApi.logout()
-        .then((res)=> setLoggedIn(false))
+        .then((res)=> {
+          setLoggedIn(false);
+          history.push('/');
+        })
         .catch((err) => console.log(`Ошибка.....: ${err}`));
   }
 
@@ -110,6 +114,14 @@ function App() {
             setCurrentUser(profileData)
         })
         .catch(err => console.log(`Ошибка.....: ${err}`));
+
+      movieApi.getFilms()
+        .then((res) => {
+          setFavMovieList(res);
+        })
+        .catch(err => console.log(`Ошибка.....: ${err}`));
+    } else {
+      setFavMovieList([]);
     }
   }, [loggedIn]);
 
@@ -260,10 +272,13 @@ function App() {
             loggedIn={loggedIn}
             handleMovieAdd={handleMovieAdd}
             handleMovieRemove={handleMovieRemove}
+            favMovieList={favMovieList}
           />
           <ProtectedRoute path="/saved-movies"
             component={SavedMovies}
             loggedIn = {loggedIn}
+            handleMovieRemove={handleMovieRemove}
+            favMovieList={favMovieList}
           />
           <ProtectedRoute path="/profile"
             component={Profile}
@@ -282,54 +297,7 @@ function App() {
           <Footer />
         </Route>
       </currentUserContext.Provider>
-
-
-    {/* 
-      <div className="App">
-        { pathname !== '/signup' && pathname !== '/signin' &&
-          <Header
-            loggedInHeader={pathname !== '/'}
-          />
-        }
-        <Switch>
-          <Route exact path='/'>
-            <Main handleDebug={handleDebugUser}/>
-          </Route>
-
-          <ProtectedRoute path="/saved-movies"
-            component={SavedMovies}
-            loggedIn = {loggedIn}
-          />
-
-          <ProtectedRoute path="/movies"
-            component={Movies}
-            loggedIn = {loggedIn}
-            handleMovieAdd={handleMovieAdd}
-            handleMovieRemove={handleMovieRemove}
-            getFavMovieList={getFavMovieList}
-          />
-
-          <ProtectedRoute path="/profile"
-            component={Profile}
-            loggedIn = {loggedIn}
-            handleLogout={onLogout}
-            handleUpdate={onUpdate}
-          />
-
-
-          <Route path='/signin'>
-            <Login onLogin={handleLogin} />
-          </Route>
-          <Route path='/signup'>
-            <Register onRegister={handleRegister}/>
-          </Route>
-          <Route path="*">
-            <PageNotFound />
-          </Route>
-        </Switch>
-        
-       */}
-      </div>
+    </div>
 
 
   );

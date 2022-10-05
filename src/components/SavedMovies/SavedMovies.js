@@ -2,16 +2,15 @@ import React from 'react';
 
 import './SavedMovies.css';
 
-import Header from '../Header/Header';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
-import Footer from '../Footer/Footer';
 
 
 
 
-function SavedMovies({ handleBurger }) {
+function SavedMovies({ favMovieList, handleMovieRemove }) {
 
+  /*
   const cardList = [
     {
       image: {
@@ -52,10 +51,12 @@ function SavedMovies({ handleBurger }) {
       id: 6,
     },
   ];
+  */
 
   const showPreloader = () => { console.log('showPreloader')};
   const hidePreloader = () => { console.log('hidePreloader')};
   const showEmptyQuery = () => { console.log('showEmptyQuery')};
+  
   return (
       <main className='movies saved-movies'>
         <SearchForm 
@@ -63,7 +64,11 @@ function SavedMovies({ handleBurger }) {
           hidePreloader={hidePreloader}
           showEmptyQuery={showEmptyQuery}
         />
-        <MoviesCardList isSaved={true} movieCardList={cardList}  />
+        <MoviesCardList
+          isSaved={true}
+          movieCardList={favMovieList}
+          handleMovieRemove={handleMovieRemove}
+        />
       </main>
   );
 }

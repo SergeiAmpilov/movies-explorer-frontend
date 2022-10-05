@@ -5,12 +5,15 @@ import searchIcon from '../../images/search-icon.svg';
 import breakIcon from '../../images/vertical-break-icon.svg';
 import api from '../../utils/api';
 
+import { getFavMovie } from '../../utils/functions.js';
+
 
 function SearchForm({ 
   showPreloader,
   hidePreloader,
   setIsEmptyQuery,
-  setMovieCardList
+  setMovieCardList,
+  favMovieList
 }) {
   
   const [searchShorts, setSearchShorts] = React.useState(true);
@@ -41,8 +44,8 @@ function SearchForm({
     showPreloader();
 
     api.getFilms()
-    .then( (result) => {
-       const listFiltered = result.filter( (item) => item.nameRU !== ''
+      .then( (result) => {
+        const listFiltered = result.filter( (item) => item.nameRU !== ''
           && item.nameRU.toLowerCase().indexOf(query.toLowerCase()) !== -1);
         if (listFiltered.length === 0) {
           setIsEmptyQuery({
@@ -50,6 +53,17 @@ function SearchForm({
             message: `По вашему запросу "${query}" не найдено подходящих фильмов`
           });
         }
+        // по идее, тут нужно все фильмы распарсить, и дополнить данными
+        // thumbnail, _id, isFav
+        listFiltered.map( movie => {
+          let thisMovieInFavlist = getFavMovie(favMovieList, movie.id);          
+          movie.thumbnail = `${api.getSiteUrl()}${movie.image.formats.thumbnail.url}`;
+          movie._id = thisMovieInFavlist ? thisMovieInFavlist._id : false;
+          return movie;
+        })
+
+        console.log('listFiltered to add', listFiltered);
+        
         setMovieCardList(listFiltered);
     })
     .catch((err) => {

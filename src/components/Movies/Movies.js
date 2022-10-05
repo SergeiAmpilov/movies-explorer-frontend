@@ -9,7 +9,7 @@ import Footer from '../Footer/Footer';
 
 
 
-function Movies({ handleMovieAdd, handleMovieRemove, getFavMovieList }) {
+function Movies({ handleMovieAdd, handleMovieRemove, favMovieList }) {
 
   const [isPreloaderVisible, setIsPreloaderVisible] = React.useState(false);
   const [isEmptyQuery, setIsEmptyQuery] = React.useState({
@@ -36,6 +36,7 @@ function Movies({ handleMovieAdd, handleMovieRemove, getFavMovieList }) {
             hidePreloader={hidePreloader}
             setIsEmptyQuery={setIsEmptyQuery}
             setMovieCardList={setMovieCardList}
+            favMovieList={favMovieList}
           />
           { isEmptyQuery.value 
             ? <EmptyQuery messageText={`${isEmptyQuery.message}`} />
@@ -45,7 +46,6 @@ function Movies({ handleMovieAdd, handleMovieRemove, getFavMovieList }) {
                 movieCardList={movieCardList}
                 handleMovieAdd={handleMovieAdd}
                 handleMovieRemove={handleMovieRemove}
-                getFavMovieList={getFavMovieList}
               />          
           }
       </main>    
