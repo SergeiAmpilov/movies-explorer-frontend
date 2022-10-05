@@ -40,7 +40,7 @@ function MoviesCard({
     setIsCardFavourite(!isCardFavourite);
 
     if (isCardFavourite) {
-      let newIdDb = handleMovieAdd({
+      handleMovieAdd({
         nameRU,
         nameEN,
         movieId,
@@ -52,8 +52,9 @@ function MoviesCard({
         duration,
         director,
         country,
-      });
-      setIdDb(newIdDb);
+      }).then((res) => {
+        setIdDb(res._id);
+      })
     } else {
       handleMovieRemove(idDb);
     }

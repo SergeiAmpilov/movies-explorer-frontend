@@ -57,8 +57,26 @@ function App() {
         .catch((err) => console.log(`Ошибка.....: ${err}`))
   }
 
-  const handleMovieAdd = () => {};
-  const handleMovieRemove = () => {};
+  const handleMovieAdd = (cardParams) => {
+    return movieApi.addFilm(cardParams)
+      .then((res) => {
+        console.log('res movie add', res);
+        return res;
+      })
+      .catch(err => console.log(`Ошибка.....: ${err}`));
+  };
+
+  const handleMovieRemove = (movieIdDb) => {
+    if (!movieIdDb) {
+      return ;
+    }
+    
+    movieApi.removeFilm(movieIdDb)
+      .then( (res) => {
+        console.log('res remove', res);
+      })
+      .catch(err => console.log(`Ошибка.....: ${err}`));
+  }
 
   const onLogout = () => {
     movieApi.logout()
