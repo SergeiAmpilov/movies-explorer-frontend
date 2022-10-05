@@ -44,10 +44,8 @@ function MoviesCard({
     console.log('click button toggle. state is', isCardFavourite);
 
     if (isCardFavourite) {
-      console.log('tru to remove card from fav');
       handleMovieRemove(_id);
     } else {
-      console.log('tru to add card to fav');
       handleMovieAdd({
         nameRU,
         nameEN,

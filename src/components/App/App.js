@@ -61,8 +61,7 @@ function App() {
   const handleMovieAdd = (cardParams) => {
     movieApi.addFilm(cardParams)
       .then((res) => {
-        console.log('res movie add', res);
-        setFavMovieList(favMovieList.push(res));
+        setFavMovieList([res, ...favMovieList]);
       })
       .catch(err => console.log(`Ошибка.....: ${err}`));
   };
@@ -74,7 +73,8 @@ function App() {
     
     movieApi.removeFilm(movieIdDb)
       .then( (res) => {
-        console.log('res remove', res);
+        const newFavMovieList = favMovieList.filter( item => item._id !== movieIdDb);
+        setFavMovieList(newFavMovieList);
       })
       .catch(err => console.log(`Ошибка.....: ${err}`));
   }

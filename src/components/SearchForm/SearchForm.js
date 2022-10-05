@@ -61,8 +61,6 @@ function SearchForm({
           movie._id = thisMovieInFavlist ? thisMovieInFavlist._id : false;
           return movie;
         })
-
-        console.log('listFiltered to add', listFiltered);
         
         setMovieCardList(listFiltered);
     })

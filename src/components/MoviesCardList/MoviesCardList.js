@@ -17,21 +17,8 @@ function MoviesCardList({
   handleMovieRemove
  }) {
 
-    /*
-  const curMovieList = getFavMovieList();
-  console.log('get movies from local', curMovieList);
 
-  const getInnerMovieId = (id) => {
-    let arFilterd = curMovieList.filter(movie => movie.id === id);
-    if ( arFilterd.length === 0 ) {
-      return false;
-    } else {
-      return arFilterd[0]._id;
-    }
-  };
-*/
   const cardsElements = movieCardList.map( card => <MoviesCard 
-    // image={`${api.getSiteUrl()}${card.image.url}`}
     image={card.image}
     key={card.id}
     title={card.nameRU}
