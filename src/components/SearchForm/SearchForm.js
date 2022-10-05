@@ -6,6 +6,7 @@ import breakIcon from '../../images/vertical-break-icon.svg';
 import api from '../../utils/api';
 
 import { getFavMovie } from '../../utils/functions.js';
+import { SHORTS_MOVIE_LENGTH } from '../../utils/constants.js';
 
 
 function SearchForm({ 
@@ -45,8 +46,14 @@ function SearchForm({
 
     api.getFilms()
       .then( (result) => {
-        const listFiltered = result.filter( (item) => item.nameRU !== ''
-          && item.nameRU.toLowerCase().indexOf(query.toLowerCase()) !== -1);
+        let listFiltered = result.filter( (item) => {
+          if (searchShorts && item.duration > SHORTS_MOVIE_LENGTH) {
+            return false;
+          }
+          return item.nameRU !== ''
+            && item.nameRU.toLowerCase().indexOf(query.toLowerCase()) !== -1;
+        });
+
         if (listFiltered.length === 0) {
           setIsEmptyQuery({
             value: true,
@@ -74,8 +81,6 @@ function SearchForm({
     })
     .finally( () => hidePreloader() );
   }
-
-  const searchShortsButtonClassName = `${searchShorts ? 'search-form__shorts-button_enabled' : 'search-form__shorts-button_disabled'}`;
   
   return (
     <div className='search-form'>
@@ -90,7 +95,7 @@ function SearchForm({
           <button
             type='button'
             onClick={handlecClickSearchShorts}
-            className={`search-form__shorts-button ${searchShortsButtonClassName}`}
+            className={`search-form__shorts-button ${searchShorts ? 'search-form__shorts-button_enabled' : 'search-form__shorts-button_disabled'}`}
             ></button>
           <label htmlFor='shorts' className='search-form__label'>Короткометражки</label>        
         </div>

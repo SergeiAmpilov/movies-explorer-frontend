@@ -1,0 +1,5 @@
+const SHORTS_MOVIE_LENGTH = 45;
+
+export {
+  SHORTS_MOVIE_LENGTH,
+};
