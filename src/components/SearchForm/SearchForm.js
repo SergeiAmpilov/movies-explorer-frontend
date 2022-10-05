@@ -53,11 +53,11 @@ function SearchForm({
             message: `По вашему запросу "${query}" не найдено подходящих фильмов`
           });
         }
-        // по идее, тут нужно все фильмы распарсить, и дополнить данными
-        // thumbnail, _id, isFav
+
         listFiltered.map( movie => {
           let thisMovieInFavlist = getFavMovie(favMovieList, movie.id);          
           movie.thumbnail = `${api.getSiteUrl()}${movie.image.formats.thumbnail.url}`;
+          movie.image = `${api.getSiteUrl()}${movie.image.formats.thumbnail.url}`;
           movie._id = thisMovieInFavlist ? thisMovieInFavlist._id : false;
           return movie;
         })

@@ -5,8 +5,6 @@ import './Movies.css';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import EmptyQuery from '../EmptyQuery/EmptyQuery';
-import Footer from '../Footer/Footer';
-
 
 
 function Movies({ handleMovieAdd, handleMovieRemove, favMovieList }) {
