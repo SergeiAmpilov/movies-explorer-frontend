@@ -41,7 +41,7 @@ function App() {
   const headerEndpoints = ['/', '/movies', '/saved-movies', '/profile'];
   const footerEndpoints = ['/', '/movies', '/saved-movies'];
 
-  const handleRegister = (name, email, password) => {
+  const handleRegister = ({name, email, password}) => {
     movieApi.signUp({ name, email, password })
       .then( (res) => {
         handleLogin(email, password);

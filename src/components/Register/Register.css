@@ -88,6 +88,15 @@
   line-height: 17px;
 }
 
+.register__form_button:hover {
+  cursor: pointer;
+}
+
+.register__form_button_disabled {
+  opacity: .6;
+  cursor: auto;
+}
+
 .register__footer-text {
   margin: 16px 0 0;
   text-align: center;
