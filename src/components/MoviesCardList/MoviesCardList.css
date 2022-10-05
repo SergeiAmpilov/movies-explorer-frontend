@@ -39,6 +39,10 @@
   color: #000;
 }
 
+.cards-section__button_disabled {
+  opacity: .6;
+}
+
 @media screen and (max-width: 1140px) {
   .cards-section {
     width: 708px;

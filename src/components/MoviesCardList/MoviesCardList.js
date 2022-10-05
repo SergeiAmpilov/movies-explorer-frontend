@@ -17,27 +17,64 @@ function MoviesCardList({
   handleMovieRemove
  }) {
 
+  const step = 4; /* количество карточек в строке */
 
-  const cardsElements = movieCardList.map( card => <MoviesCard 
-    image={card.image}
-    key={card.id}
-    title={card.nameRU}
-    duration={card.duration}
-    isSaved={isSaved}
-    movieId={card.id} /* это id в стороннем сервисе */
-    nameRU={card.nameRU}
-    nameEN={card.nameEN}
-    thumbnail={card.thumbnail}
-    trailerLink={card.trailerLink}
-    description={card.description}
-    year={card.year}
-    director={card.director}
-    country={card.country}
-    handleMovieAdd={handleMovieAdd}
-    handleMovieRemove={handleMovieRemove}
-    isFavourite={ card._id } /* признак того, что данная карточка уже находится в списке сохраненных */
-    _id={ card._id } /* id карточки в базе данных сервиса, либо false если это не фаворит */
-  /> );
+  const [rowCount, setRowCount] = React.useState(2);
+  const [displayMovieList, setDisplayMovieList] = React.useState([]);
+  const [showMoreDisabled, setShowMoreDisabled] = React.useState(false);
+
+  const renderCardListByRows = () => {
+    return movieCardList.slice(0, step * rowCount)
+            .map( card => <MoviesCard 
+              image={card.image}
+              key={card.id}
+              title={card.nameRU}
+              duration={card.duration}
+              isSaved={isSaved}
+              movieId={card.id} /* это id в стороннем сервисе */
+              nameRU={card.nameRU}
+              nameEN={card.nameEN}
+              thumbnail={card.thumbnail}
+              trailerLink={card.trailerLink}
+              description={card.description}
+              year={card.year}
+              director={card.director}
+              country={card.country}
+              handleMovieAdd={handleMovieAdd}
+              handleMovieRemove={handleMovieRemove}
+              isFavourite={ card._id } /* признак того, что данная карточка уже находится в списке сохраненных */
+              _id={ card._id } /* id карточки в базе данных сервиса, либо false если это не фаворит */
+            /> );
+  }
+
+
+
+  const handleClickMore = () => {
+    if (movieCardList.length <= step * rowCount) {
+      return ;
+    }
+
+    setRowCount(rowCount + 1);
+  }
+
+  /* при первом открытии определим, можем ли мы вывести хотя бы одну строку */
+  React.useEffect(() => {
+    if (movieCardList.length > step) {
+      setRowCount(2);
+    } else {
+      setRowCount(1);
+    }
+
+    setDisplayMovieList(renderCardListByRows());
+  }, []);
+
+  /* при изменении отображаемого числа строк перерассчитываем список отображаемых фильмов */
+  React.useEffect(() => {
+    setDisplayMovieList(renderCardListByRows());
+    if (movieCardList.length <= step * rowCount) {
+      setShowMoreDisabled(true);
+    }
+  }, [rowCount, movieCardList]);
 
   return isPreloaderVisible
     ? (
@@ -47,11 +84,15 @@ function MoviesCardList({
     : (
     <section className='cards-section'>
       <ul className="card-list">
-          { cardsElements }
+          { displayMovieList }
       </ul>
       { !isSaved &&
       (<div className='cards-section__navigation'>
-        <button type='button' className='cards-section__button'>Ещё</button>
+        <button
+          type='button'
+          className={`cards-section__button ${showMoreDisabled ? 'cards-section__button_disabled' : ''}`}
+          onClick={handleClickMore}
+          >Ещё</button>
       </div>)}      
     </section>
   );
