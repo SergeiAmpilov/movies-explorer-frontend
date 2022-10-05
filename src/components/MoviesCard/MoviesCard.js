@@ -65,7 +65,7 @@ function MoviesCard({
     setIsCardFavourite(!isCardFavourite);
   }
 
-  return(
+  return (isSaved && isCardFavourite) || !isSaved ? (
     <li className='card'>
       <img src={image} className='card__img' alt={`Фильм ${title}`}/>
       <div className='card__container'>
@@ -76,14 +76,12 @@ function MoviesCard({
             className={`card__favourite-button ${buttonClass}`}
             onClick={() => {
               handleButtonToggle();
-
             }}
           />
         </div>      
         <p className='card__duration'>{durationText}</p>
       </div>
-    </li>
-  );
+    </li>) : (<></>) ;
 }
 
 export default MoviesCard;
