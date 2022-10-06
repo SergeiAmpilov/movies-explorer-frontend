@@ -5,8 +5,7 @@ import './MoviesCardList.css';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import Preloader from '../Preloader/Preloader';
 
-import api from '../../utils/api';
-
+import { PAGINATION_CONFIG } from '../../utils/constants.js';
 
 
 function MoviesCardList({
@@ -19,12 +18,17 @@ function MoviesCardList({
 
   const step = 4; /* количество карточек в строке */
 
-  const [rowCount, setRowCount] = React.useState(2);
+  const [rowCount, setRowCount] = React.useState(0);
   const [displayMovieList, setDisplayMovieList] = React.useState([]);
   const [showMoreDisabled, setShowMoreDisabled] = React.useState(false);
+  const [actualPagination, setActualPagination] = React.useState(PAGINATION_CONFIG['1280']);
+  
+  // actualPagination.cardsInRow - сколько  карточек в строке
+  // actualPagination.rows - стартовое колличество строк
+  // actualPagination.step - сколько строк по кнопке Еще добавлять
 
   const renderCardListByRows = () => {
-    return movieCardList.slice(0, step * rowCount)
+    return movieCardList.slice(0, actualPagination.cardsInRow * rowCount)
             .map( card => <MoviesCard 
               image={card.image}
               key={card.id}
@@ -47,19 +51,32 @@ function MoviesCardList({
             /> );
   }
 
+  const getActualPagination = () => {
+    const clientWidth = document.documentElement.clientWidth;
+
+    if (clientWidth >= PAGINATION_CONFIG['1280'].pixelWidth) {
+      return PAGINATION_CONFIG['1280'];
+    } else if (clientWidth <= PAGINATION_CONFIG['600'].pixelWidth) {
+      return PAGINATION_CONFIG['600'];
+    }
+
+    return PAGINATION_CONFIG['768'];
+  }
+
 
 
   const handleClickMore = () => {
-    if (movieCardList.length <= step * rowCount) {
+    if (movieCardList.length <= actualPagination.cardsInRow * rowCount) {
       return ;
     }
 
-    setRowCount(rowCount + 1);
+    setRowCount(rowCount + actualPagination.step);
   }
 
   /* при первом открытии определим, можем ли мы вывести хотя бы одну строку */
   React.useEffect(() => {
-    setRowCount(2);
+    setActualPagination(getActualPagination()); 
+    setRowCount(actualPagination.rows);
     setDisplayMovieList(renderCardListByRows());
   }, []);
 
@@ -80,7 +97,7 @@ function MoviesCardList({
     </section>)
     : (
     <section className='cards-section'>
-      <ul className="card-list">
+      <ul className="card-list"> {/* вот здесь еще нужно докуинуть класс, который соответствует ширине экрана и гриду */}
           { displayMovieList }
       </ul>
       { !isSaved &&
