@@ -9,7 +9,7 @@ const PAGINATION_CONFIG = {
   '768': {
     cardsInRow: 2,
     rows: 2,
-    step: 1,
+    step: 2,
     pixelWidth: 768,
   },
   '600': {
