@@ -59,22 +59,19 @@ function MoviesCardList({
 
   /* при первом открытии определим, можем ли мы вывести хотя бы одну строку */
   React.useEffect(() => {
-    if (movieCardList.length > step) {
-      setRowCount(2);
-    } else {
-      setRowCount(1);
-    }
-
+    setRowCount(2);
     setDisplayMovieList(renderCardListByRows());
   }, []);
 
   /* при изменении отображаемого числа строк перерассчитываем список отображаемых фильмов */
   React.useEffect(() => {
     setDisplayMovieList(renderCardListByRows());
-    if (movieCardList.length <= step * rowCount) {
-      setShowMoreDisabled(true);
-    }
   }, [rowCount, movieCardList]);
+
+  // отключение кнопки Еще
+  React.useEffect(() => {
+    setShowMoreDisabled(movieCardList.length <= displayMovieList.length);
+  }, [movieCardList, displayMovieList]);
 
   return isPreloaderVisible
     ? (
@@ -88,11 +85,11 @@ function MoviesCardList({
       </ul>
       { !isSaved &&
       (<div className='cards-section__navigation'>
-        <button
+        { !showMoreDisabled && <button
           type='button'
           className={`cards-section__button ${showMoreDisabled ? 'cards-section__button_disabled' : ''}`}
           onClick={handleClickMore}
-          >Ещё</button>
+          >Ещё</button> }
       </div>)}      
     </section>
   );
