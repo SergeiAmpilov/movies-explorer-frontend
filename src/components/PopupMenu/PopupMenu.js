@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link, NavLink } from 'react-router-dom'; 
+
 
 import './PopupMenu.css';
 import accLogo from '../../images/acc-icon.svg';
@@ -17,42 +19,43 @@ function PopupMenu({ isVisible, handleBurger }) {
         </button>
         <nav className='popup__navigation'>
           <div className='popup__menu-item'>
-            <a href="/"
-                className='navigation__link'>
-                  Главная
-            </a>
+            <NavLink
+              to='/'
+              className='navigation__link'
+              activeClassName='navigation__link_active'>
+                Главная
+            </NavLink>
           </div>
           <div className='popup__menu-item'>
-            <a href="/movies"
-                className='navigation__link navigation__link_active'>
-                  Фильмы
-            </a>
+            <NavLink
+              to='/movies'
+              className='navigation__link'
+              activeClassName='navigation__link_active'>
+                Фильмы
+            </NavLink>
           </div>
           <div className='popup__menu-item'>
-            <a href="/saved-movies"
-                className='navigation__link'>
-                  Сохраненные фильмы
-            </a>
+            <NavLink
+              to='/saved-movies'
+              className='navigation__link'
+              activeClassName='navigation__link_active'>
+                Сохраненные фильмы
+            </NavLink>
           </div>
           <div className='popup__menu-item'>
-            <a href="/profile"
-                className='navigation__link navigation__link_account navigation__link_account-visible '>
-                  <img
-                    src={accLogo}
-                    className='navigation__link_account-logo'
-                    alt='Логотип пользовательского аккаунта'
-                  />
-                  Аккаунт
-            </a>
+            <Link
+              to='/profile'
+              className='navigation__link navigation__link_account navigation__link_account-visible'
+              >
+                <img
+                  src={accLogo}
+                  className='navigation__link_account-logo'
+                  alt='Логотип пользовательского аккаунта'
+                />
+                Аккаунт
+              </Link>
           </div>
-
-
-
-
-
-
         </nav>
-
       </div>
     </div>
   );
