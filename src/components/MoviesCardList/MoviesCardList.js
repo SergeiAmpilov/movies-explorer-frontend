@@ -22,10 +22,6 @@ function MoviesCardList({
   const [displayMovieList, setDisplayMovieList] = React.useState([]);
   const [showMoreDisabled, setShowMoreDisabled] = React.useState(false);
   const [actualPagination, setActualPagination] = React.useState(PAGINATION_CONFIG['1280']);
-  
-  // actualPagination.cardsInRow - сколько  карточек в строке
-  // actualPagination.rows - стартовое колличество строк
-  // actualPagination.step - сколько строк по кнопке Еще добавлять
 
   const renderCardListByRows = () => {
     return movieCardList.slice(0, actualPagination.cardsInRow * rowCount)
@@ -63,6 +59,10 @@ function MoviesCardList({
     return PAGINATION_CONFIG['768'];
   }
 
+  const handlerResize = () => {
+    setActualPagination(getActualPagination()); 
+  }
+
 
 
   const handleClickMore = () => {
@@ -78,6 +78,8 @@ function MoviesCardList({
     setActualPagination(getActualPagination()); 
     setRowCount(actualPagination.rows);
     setDisplayMovieList(renderCardListByRows());
+
+    window.addEventListener('resize', handlerResize);
   }, []);
 
   /* при изменении отображаемого числа строк перерассчитываем список отображаемых фильмов */
