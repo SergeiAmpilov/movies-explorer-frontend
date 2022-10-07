@@ -29,6 +29,8 @@
 .not-found__link {  
   color: #4285F4;
   text-decoration: none;
+  background: transparent;
+  border: none;
 }
 .not-found__link:visited {
   color: #4285F4;
