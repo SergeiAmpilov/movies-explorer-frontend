@@ -54,14 +54,17 @@ function SearchForm({
         return false;
       }
 
-      /// удаляем фильмы без картинок       
-      if ( typeof item.image === 'undefined'
+      /// удаляем фильмы без картинок
+      if (!isSavedMovies) {
+        if ( typeof item.image === 'undefined'
         || typeof item.image.formats === 'undefined'
         || typeof item.image.formats.thumbnail === 'undefined'
         || typeof item.image.formats.thumbnail.url === 'undefined') {
-        console.log('item.image.formats', item.image);
-        return false;
-      }      
+          console.log('item.image.formats', item.image);
+          return false;
+        } 
+      }
+     
 
       return item.nameRU !== ''
         && item.nameRU.toLowerCase().indexOf(query.toLowerCase()) !== -1;

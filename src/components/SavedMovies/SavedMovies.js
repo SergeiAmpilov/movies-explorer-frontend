@@ -4,30 +4,48 @@ import './SavedMovies.css';
 
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
+import EmptyQuery from '../EmptyQuery/EmptyQuery';
+
 
 
 
 
 function SavedMovies({ favMovieList, handleMovieRemove }) {
 
-  const showPreloader = () => { console.log('showPreloader')};
-  const hidePreloader = () => { console.log('hidePreloader')};
-  const showEmptyQuery = () => { console.log('showEmptyQuery')};
+  const [isPreloaderVisible, setIsPreloaderVisible] = React.useState(false);
+  const [isEmptyQuery, setIsEmptyQuery] = React.useState({
+    value: false,
+    message: ''
+  });
+  const [movieCardList, setMovieCardList] = React.useState(favMovieList);
+
+
+  const showPreloader = () => { 
+    setIsPreloaderVisible(true);
+  };
+
+  const hidePreloader = () => {
+    setIsPreloaderVisible(false);
+  };
   
   return (
       <main className='movies saved-movies'>
         <SearchForm 
           showPreloader={showPreloader}
           hidePreloader={hidePreloader}
-          showEmptyQuery={showEmptyQuery}
+          setIsEmptyQuery={setIsEmptyQuery}
+          setMovieCardList={setMovieCardList}
           favMovieList={favMovieList}
           isSavedMovies={true}
         />
-        <MoviesCardList
-          isSaved={true}
-          movieCardList={favMovieList}
-          handleMovieRemove={handleMovieRemove}
-        />
+        { isEmptyQuery.value 
+          ? <EmptyQuery messageText={`${isEmptyQuery.message}`} />
+          : <MoviesCardList
+            isSaved={true}
+            isPreloaderVisible={isPreloaderVisible}
+            movieCardList={movieCardList} 
+            handleMovieRemove={handleMovieRemove}
+          />}
       </main>
   );
 }
