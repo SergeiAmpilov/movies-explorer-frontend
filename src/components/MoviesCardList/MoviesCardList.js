@@ -16,8 +16,6 @@ function MoviesCardList({
   handleMovieRemove
  }) {
 
-  const step = 4; /* количество карточек в строке */
-
   const [rowCount, setRowCount] = React.useState(0);
   const [displayMovieList, setDisplayMovieList] = React.useState([]);
   const [showMoreDisabled, setShowMoreDisabled] = React.useState(false);
@@ -80,6 +78,10 @@ function MoviesCardList({
     setDisplayMovieList(renderCardListByRows());
 
     window.addEventListener('resize', handlerResize);
+
+    return () => {
+      window.removeEventListener('resize', handlerResize);
+    }
   }, []);
 
   /* при изменении отображаемого числа строк перерассчитываем список отображаемых фильмов */
