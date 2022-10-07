@@ -7,7 +7,7 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import EmptyQuery from '../EmptyQuery/EmptyQuery';
 
 
-function Movies({ handleMovieAdd, handleMovieRemove, favMovieList }) {
+function Movies({ handleMovieAdd, handleMovieRemove, favMovieList, moviesBeatFilm }) {
 
   const [isPreloaderVisible, setIsPreloaderVisible] = React.useState(false);
   const [isEmptyQuery, setIsEmptyQuery] = React.useState({
@@ -35,6 +35,8 @@ function Movies({ handleMovieAdd, handleMovieRemove, favMovieList }) {
             setIsEmptyQuery={setIsEmptyQuery}
             setMovieCardList={setMovieCardList}
             favMovieList={favMovieList}
+            moviesBeatFilm={moviesBeatFilm}
+            isSavedMovies={false}
           />
           { isEmptyQuery.value 
             ? <EmptyQuery messageText={`${isEmptyQuery.message}`} />

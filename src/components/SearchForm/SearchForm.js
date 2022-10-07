@@ -14,7 +14,9 @@ function SearchForm({
   hidePreloader,
   setIsEmptyQuery,
   setMovieCardList,
-  favMovieList
+  favMovieList,
+  moviesBeatFilm=[],
+  isSavedMovies=true,
 }) {
   
   const [searchShorts, setSearchShorts] = React.useState(true);
@@ -42,44 +44,47 @@ function SearchForm({
       setIsEmptyQuery(false);
     }
 
+    ////
     showPreloader();
 
-    api.getFilms()
-      .then( (result) => {
-        let listFiltered = result.filter( (item) => {
-          if (searchShorts && item.duration > SHORTS_MOVIE_LENGTH) {
-            return false;
-          }
-          return item.nameRU !== ''
-            && item.nameRU.toLowerCase().indexOf(query.toLowerCase()) !== -1;
-        });
+    let srcMovieList = isSavedMovies ? favMovieList : moviesBeatFilm;
 
-        if (listFiltered.length === 0) {
-          setIsEmptyQuery({
-            value: true,
-            message: `По вашему запросу "${query}" не найдено подходящих фильмов`
-          });
-        }
+    let listFiltered = srcMovieList.filter( (item) => {
+      if (searchShorts && item.duration > SHORTS_MOVIE_LENGTH) {
+        return false;
+      }
 
-        listFiltered.map( movie => {
-          let thisMovieInFavlist = getFavMovie(favMovieList, movie.id);          
-          movie.thumbnail = `${api.getSiteUrl()}${movie.image.formats.thumbnail.url}`;
-          movie.image = `${api.getSiteUrl()}${movie.image.formats.thumbnail.url}`;
-          movie._id = thisMovieInFavlist ? thisMovieInFavlist._id : false;
-          return movie;
-        })
-        
-        setMovieCardList(listFiltered);
-    })
-    .catch((err) => {
-      console.log(`Ошибка.....: ${err}`);
+      /// удаляем фильмы без картинок       
+      if ( typeof item.image === 'undefined'
+        || typeof item.image.formats === 'undefined'
+        || typeof item.image.formats.thumbnail === 'undefined'
+        || typeof item.image.formats.thumbnail.url === 'undefined') {
+        console.log('item.image.formats', item.image);
+        return false;
+      }      
+
+      return item.nameRU !== ''
+        && item.nameRU.toLowerCase().indexOf(query.toLowerCase()) !== -1;
+    });
+
+    if (listFiltered.length === 0) {
       setIsEmptyQuery({
         value: true,
-        message: 'Произошла ошибка на сервере'
+        message: `По вашему запросу "${query}" не найдено подходящих фильмов`
       });
+    }
 
-    })
-    .finally( () => hidePreloader() );
+    if (!isSavedMovies) {
+      listFiltered.map( movie => {
+        let thisMovieInFavlist = getFavMovie(favMovieList, movie.id);          
+        movie.thumbnail = `${api.getSiteUrl()}${movie.image.formats.thumbnail.url}`;
+        movie.image = `${api.getSiteUrl()}${movie.image.formats.thumbnail.url}`;
+        movie._id = thisMovieInFavlist ? thisMovieInFavlist._id : false;
+        return movie;
+      })
+    }
+    setMovieCardList(listFiltered);
+    hidePreloader();
   }
   
   return (

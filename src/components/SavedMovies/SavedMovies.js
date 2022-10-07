@@ -20,6 +20,8 @@ function SavedMovies({ favMovieList, handleMovieRemove }) {
           showPreloader={showPreloader}
           hidePreloader={hidePreloader}
           showEmptyQuery={showEmptyQuery}
+          favMovieList={favMovieList}
+          isSavedMovies={true}
         />
         <MoviesCardList
           isSaved={true}

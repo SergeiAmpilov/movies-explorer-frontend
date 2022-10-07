@@ -27,6 +27,7 @@ import Popup from '../Popup/Popup';
 import { currentUserContext } from '../../contexts/CurrentUserContext';
 
 import movieApi from '../../utils/MovieApi';
+import api from '../../utils/api';
 import { MESSAGES } from '../../utils/constants';
 
 
@@ -36,6 +37,7 @@ function App() {
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [currentUser, setCurrentUser] = React.useState({});
   const [favMovieList, setFavMovieList] = React.useState([]); /* список любимых фильмов текущего пользователя */
+  const [moviesBeatFilm, setMoviesBeatFilm] = React.useState([]);
 
   const [popupTitle, setPopupTitle] = React.useState('');
   const [isPopupOpen, setIsPopupOpen] = React.useState(false);
@@ -157,6 +159,10 @@ function App() {
           setFavMovieList(res);
         })
         .catch(err => console.log(`Ошибка.....: ${err}`));
+
+        api.getFilms()
+          .then(setMoviesBeatFilm)
+          .catch(err => console.log(`Ошибка.....: ${err}`));
     } else {
       setFavMovieList([]);
     }
@@ -184,6 +190,7 @@ function App() {
             handleMovieAdd={handleMovieAdd}
             handleMovieRemove={handleMovieRemove}
             favMovieList={favMovieList}
+            moviesBeatFilm={moviesBeatFilm}
           />
           <ProtectedRoute path="/saved-movies"
             component={SavedMovies}
