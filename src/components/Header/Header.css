@@ -19,6 +19,14 @@
   justify-content: flex-start;
 }
 
+.header__logo {
+  transition: all .3s ease;
+}
+
+.header__logo:hover {
+  transform: rotate(45deg);
+}
+
 @media screen and (max-width: 1140px) {
   .header {
     width: 708px;
