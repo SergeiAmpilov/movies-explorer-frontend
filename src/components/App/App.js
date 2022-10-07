@@ -21,11 +21,13 @@ import Profile from '../Profile/Profile';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
+import Popup from '../Popup/Popup';
 
 
 import { currentUserContext } from '../../contexts/CurrentUserContext';
 
 import movieApi from '../../utils/MovieApi';
+import { MESSAGES } from '../../utils/constants';
 
 
 
@@ -34,6 +36,9 @@ function App() {
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [currentUser, setCurrentUser] = React.useState({});
   const [favMovieList, setFavMovieList] = React.useState([]); /* список любимых фильмов текущего пользователя */
+
+  const [popupTitle, setPopupTitle] = React.useState('');
+  const [isPopupOpen, setIsPopupOpen] = React.useState(false);
 
   const history = useHistory();
 
@@ -45,8 +50,14 @@ function App() {
     movieApi.signUp({ name, email, password })
       .then( (res) => {
         handleLogin(email, password);
+        setPopupTitle(MESSAGES.sucsessRegistration);
+        setIsPopupOpen(true);
       })
-      .catch( (err) => console.log(err));
+      .catch( (err) => {
+        console.log(err);
+        setPopupTitle(MESSAGES.defaultError);
+        setIsPopupOpen(true);
+      });
   }
 
   const handleLogin = (email, password) => {
@@ -55,7 +66,9 @@ function App() {
           setLoggedIn(true);
           history.push('/movies');
         })
-        .catch((err) => console.log(`Ошибка.....: ${err}`))
+        .catch((err) => {
+          console.log(`Ошибка.....: ${err}`);
+        })
   }
 
   const handleMovieAdd = (cardParams) => {
@@ -63,7 +76,11 @@ function App() {
       .then((res) => {
         setFavMovieList([res, ...favMovieList]);
       })
-      .catch(err => console.log(`Ошибка.....: ${err}`));
+      .catch((err) => {
+        console.log(`Ошибка.....: ${err}`);
+        setPopupTitle(MESSAGES.defaultError);
+        setIsPopupOpen(true);
+      });
   };
 
   const handleMovieRemove = (movieIdDb) => {
@@ -76,7 +93,11 @@ function App() {
         const newFavMovieList = favMovieList.filter( item => item._id !== movieIdDb);
         setFavMovieList(newFavMovieList);
       })
-      .catch(err => console.log(`Ошибка.....: ${err}`));
+      .catch(err => {
+        console.log(`Ошибка.....: ${err}`);
+        setPopupTitle(MESSAGES.defaultError);
+        setIsPopupOpen(true);
+      });
   }
 
   const onLogout = () => {
@@ -85,27 +106,43 @@ function App() {
           setLoggedIn(false);
           history.push('/');
         })
-        .catch((err) => console.log(`Ошибка.....: ${err}`));
+        .catch((err) => {
+          console.log(`Ошибка.....: ${err}`);
+          setPopupTitle(MESSAGES.defaultError);
+          setIsPopupOpen(true);
+        });
   }
 
   const onUpdate = (name, email) => {
     movieApi.update({ name, email })
       .then( (res) => {
-        console.log(res);
+        // console.log(res);
+        setPopupTitle(MESSAGES.sucsessUpdate);
+        setIsPopupOpen(true);
       })
       .catch((err) => {
-          console.log(`Ошибка.....: ${err}`)
+          console.log(`Ошибка.....: ${err}`);
+          setPopupTitle(MESSAGES.defaultError);
+          setIsPopupOpen(true);
       })
   }
 
-    // проверка токена при первичном открытии сайта
-    React.useEffect(() => {
-      movieApi.checkToken()
-          .then((res) => {
-            setLoggedIn(true);
-          })
-          .catch((err) => console.log(`Ошибка.....: ${err}`));
-    }, []);
+  const closePopup = () => {
+    setIsPopupOpen(false);
+    setPopupTitle('');
+  }
+
+  // проверка токена при первичном открытии сайта
+  React.useEffect(() => {
+    movieApi.checkToken()
+        .then((res) => {
+          setLoggedIn(true);
+
+        })
+        .catch((err) => {
+          console.log(`Ошибка.....: ${err}`);
+        });
+  }, []);
 
   React.useEffect(() => {
     if (loggedIn) {
@@ -170,6 +207,7 @@ function App() {
         <Route exact path={footerEndpoints}>
           <Footer />
         </Route>
+        <Popup text={popupTitle} isOpen={isPopupOpen} onClose={closePopup} />
       </currentUserContext.Provider>
     </div>
   );

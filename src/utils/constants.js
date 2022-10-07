@@ -20,7 +20,14 @@ const PAGINATION_CONFIG = {
   }
 };
 
+const MESSAGES = {
+  'sucsessRegistration': 'Вы успешно зарегистрированы',
+  'sucsessUpdate': 'Вы успешно обновлены',
+  'defaultError': 'Что-то пошло не так',
+};
+
 export {
   SHORTS_MOVIE_LENGTH,
   PAGINATION_CONFIG,
+  MESSAGES,
 };
