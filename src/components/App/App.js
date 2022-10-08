@@ -81,8 +81,6 @@ function App() {
       .catch((err) => {
         console.log(`Ошибка.....: ${err}`);
         openPopup(MESSAGES.defaultError);
-        // setPopupTitle(MESSAGES.defaultError);
-        // setIsPopupOpen(true);
       });
   };
 
@@ -99,22 +97,25 @@ function App() {
       .catch(err => {
         console.log(`Ошибка.....: ${err}`);
         openPopup(MESSAGES.defaultError);
-        // setPopupTitle(MESSAGES.defaultError);
-        // setIsPopupOpen(true);
       });
+  }
+
+  const clearOnLogout = () => {
+    setMoviesBeatFilm([]);
+    setFavMovieList([]);
+
+    history.push('/');
   }
 
   const onLogout = () => {
     movieApi.logout()
         .then((res)=> {
           setLoggedIn(false);
-          history.push('/');
+          // clearOnLogout();
         })
         .catch((err) => {
           console.log(`Ошибка.....: ${err}`);
           openPopup(MESSAGES.defaultError);
-          // setPopupTitle(MESSAGES.defaultError);
-          // setIsPopupOpen(true);
         });
   }
 
@@ -144,10 +145,10 @@ function App() {
     movieApi.checkToken()
         .then((res) => {
           setLoggedIn(true);
-
         })
         .catch((err) => {
           console.log(`Ошибка.....: ${err}`);
+          setLoggedIn(false);
         });
   }, []);
 
@@ -157,7 +158,10 @@ function App() {
         .then((profileData) => {
             setCurrentUser(profileData)
         })
-        .catch(err => console.log(`Ошибка.....: ${err}`));
+        .catch((err) => {
+          console.log(`Ошибка.....: ${err}`);
+          setLoggedIn(false);
+        });
 
       movieApi.getFilms()
         .then((res) => {
@@ -165,11 +169,11 @@ function App() {
         })
         .catch(err => console.log(`Ошибка.....: ${err}`));
 
-        api.getFilms()
-          .then(setMoviesBeatFilm)
-          .catch(err => console.log(`Ошибка.....: ${err}`));
+      api.getFilms()
+        .then(setMoviesBeatFilm)
+        .catch(err => console.log(`Ошибка.....: ${err}`));
     } else {
-      setFavMovieList([]);
+      clearOnLogout();
     }
   }, [loggedIn]);
 
