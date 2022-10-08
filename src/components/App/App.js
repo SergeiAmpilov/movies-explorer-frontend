@@ -80,11 +80,7 @@ function App() {
   const handleMovieAdd = (cardParams) => {
     movieApi.addFilm(cardParams)
       .then((res) => {
-        // setFavMovieList([res, ...favMovieList]);
-        /* пока поставил временную заплатку. не знаю почему базовый вариант не работаем. может потом поправлю а может и нет */
-        movieApi.getFilms()
-          .then(setFavMovieList)
-          .catch( (err)=>console.log(`Ошибка.....: ${err}`) );        
+        setFavMovieList([...favMovieList, res]);
       })
       .catch((err) => {
         console.log(`Ошибка.....: ${err}`);
