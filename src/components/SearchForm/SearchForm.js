@@ -60,7 +60,7 @@ function SearchForm({
         || typeof item.image.formats === 'undefined'
         || typeof item.image.formats.thumbnail === 'undefined'
         || typeof item.image.formats.thumbnail.url === 'undefined') {
-          console.log('item.image.formats', item.image);
+          // console.log('item.image.formats', item.image);
           return false;
         } 
       }

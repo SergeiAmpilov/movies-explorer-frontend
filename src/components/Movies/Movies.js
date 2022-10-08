@@ -6,6 +6,9 @@ import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import EmptyQuery from '../EmptyQuery/EmptyQuery';
 
+import { parseMovieList } from '../../utils/functions.js';
+
+
 
 function Movies({ handleMovieAdd, handleMovieRemove, favMovieList, moviesBeatFilm }) {
 
@@ -14,7 +17,11 @@ function Movies({ handleMovieAdd, handleMovieRemove, favMovieList, moviesBeatFil
     value: false,
     message: ''
   });
-  const [movieCardList, setMovieCardList] = React.useState([]);
+  const [movieCardList, setMovieCardList] = React.useState(
+    parseMovieList(moviesBeatFilm, favMovieList)
+  );
+
+  
 
   const showPreloader = () => { 
     setIsPreloaderVisible(true);
@@ -23,6 +30,8 @@ function Movies({ handleMovieAdd, handleMovieRemove, favMovieList, moviesBeatFil
   const hidePreloader = () => {
     setIsPreloaderVisible(false);
   };
+
+
 
   return (
     
