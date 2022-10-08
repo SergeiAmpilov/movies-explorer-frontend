@@ -68,7 +68,8 @@ function App() {
   const handleLogin = (email, password) => {
     movieApi.signIn({ email, password })
         .then((res) => {
-          setLoggedIn(true);
+          // setLoggedIn(true);
+          refreshUserInfo();
           history.push('/movies');
         })
         .catch((err) => {
@@ -103,21 +104,16 @@ function App() {
       });
   }
 
-  const clearOnLogout = () => {
-    setMoviesBeatFilm([]);
-    setFavMovieList([]);
-    // history.push('/');
-  }
-
   const onLogout = () => {
     movieApi.logout()
-        .then((res)=> {
-          setLoggedIn(false);
-        })
-        .catch((err) => {
-          console.log(`Ошибка.....: ${err}`);
-          openPopup(MESSAGES.defaultError);
-        });
+      .then((res)=> {
+        // setLoggedIn(false);
+        clearOnLogout();
+      })
+      .catch((err) => {
+        console.log(`Ошибка.....: ${err}`);
+        openPopup(MESSAGES.defaultError);
+      });
   }
 
   const onUpdate = (name, email) => {
@@ -141,43 +137,46 @@ function App() {
     setPopupTitle('');
   }
 
-  // проверка токена при первичном открытии сайта
-  React.useEffect(() => {
+  const clearOnLogout = () => {
+    setMoviesBeatFilm([]);
+    setFavMovieList([]);
+    setCurrentUser({});
+    setIsLoading(true);
+    setLoggedIn(false);
+    history.push('/');
+  }
+
+  const refreshUserInfo = () => {
     movieApi.checkToken()
-        .then((res) => {
-          setLoggedIn(true);
-        })
-        .catch((err) => {
-          console.log(`Ошибка.....: ${err}`);
-          setLoggedIn(false);
-        })
-        .finally(() => {setIsLoading(false)});
-  }, []);
+      .then((profileData) => {
+        setCurrentUser(profileData);
+        setLoggedIn(true);
 
-  React.useEffect(() => {
-    if (loggedIn) {
-      movieApi.checkToken()
-        .then((profileData) => {
-            setCurrentUser(profileData)
-        })
-        .catch((err) => {
-          console.log(`Ошибка.....: ${err}`);
-          setLoggedIn(false);
-        });
-
-      movieApi.getFilms()
+        movieApi.getFilms()
         .then((res) => {
           setFavMovieList(res);
+
+          api.getFilms()
+            .then((res) => {
+              setMoviesBeatFilm(res);
+              setIsLoading(false); //
+            })
+            .catch(err => console.log(`Ошибка.....: ${err}`));
         })
         .catch(err => console.log(`Ошибка.....: ${err}`));
 
-      api.getFilms()
-        .then(setMoviesBeatFilm)
-        .catch(err => console.log(`Ошибка.....: ${err}`));
-    } else {
-      clearOnLogout();
-    }
-  }, [loggedIn]);
+
+      })
+      .catch( (err) => {
+        clearOnLogout();
+      })
+
+  }
+
+  // проверка токена при первичном открытии сайта
+  React.useEffect(() => {
+    refreshUserInfo();
+  }, []);
 
   return (
     <div className="App">
