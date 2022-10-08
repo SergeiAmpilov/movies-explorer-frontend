@@ -105,7 +105,7 @@ function MoviesCardList({
       <ul className="card-list"> {/* вот здесь еще нужно докуинуть класс, который соответствует ширине экрана и гриду */}
           { displayMovieList }
       </ul>
-      { !isSaved &&
+      { true &&
       (<div className='cards-section__navigation'>
         { !showMoreDisabled && <button
           type='button'
