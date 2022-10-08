@@ -54,7 +54,12 @@ function Profile({ handleLogout, handleUpdate, openPopup }) {
       return ;
     }
 
-    handleUpdate(name, email);
+    handleUpdate(name, email)
+      .then( () => {
+        setVisibleButton(false);
+        setLastName(name);
+        setLastEmail(email);
+      })
   }
 
   return (

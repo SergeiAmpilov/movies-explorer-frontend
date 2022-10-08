@@ -119,17 +119,13 @@ function App() {
   }
 
   const onUpdate = (name, email) => {
-    movieApi.update({ name, email })
+    return movieApi.update({ name, email })
       .then( (res) => {
         openPopup(MESSAGES.sucsessUpdate);
-        // setPopupTitle(MESSAGES.sucsessUpdate);
-        // setIsPopupOpen(true);
       })
       .catch((err) => {
           console.log(`Ошибка.....: ${err}`);
           openPopup(MESSAGES.defaultError);
-          // setPopupTitle(MESSAGES.defaultError);
-          // setIsPopupOpen(true);
       })
   }
 
