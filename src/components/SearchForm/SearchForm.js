@@ -41,11 +41,11 @@ function SearchForm({
     evt.preventDefault();
     if (query.trim() === '') {
 
-      // setIsEmptyQuery({
-      //   value: true,
-      //   message: 'Вы ничего не ввели в поисковую строку.'
-      // });
-      
+      setIsEmptyQuery({
+        value: true,
+        message: 'Вы ничего не ввели в поисковую строку.'
+      });
+
       setShowErrorEmptyQuery(true);
       return ;
     } else {
@@ -60,19 +60,7 @@ function SearchForm({
     let listFiltered = srcMovieList.filter( (item) => {
       if (searchShorts && item.duration > SHORTS_MOVIE_LENGTH) {
         return false;
-      }
-
-      /// удаляем фильмы без картинок
-      if (!isSavedMovies) {
-        if ( typeof item.image === 'undefined'
-        || typeof item.image.formats === 'undefined'
-        || typeof item.image.formats.thumbnail === 'undefined'
-        || typeof item.image.formats.thumbnail.url === 'undefined') {
-          // console.log('item.image.formats', item.image);
-          return false;
-        } 
-      }
-     
+      }    
 
       return item.nameRU !== ''
         && item.nameRU.toLowerCase().indexOf(query.toLowerCase()) !== -1;
@@ -85,15 +73,6 @@ function SearchForm({
       });
     }
 
-    if (!isSavedMovies) {
-      listFiltered.map( movie => {
-        let thisMovieInFavlist = getFavMovie(favMovieList, movie.id);          
-        movie.thumbnail = `${api.getSiteUrl()}${movie.image.formats.thumbnail.url}`;
-        movie.image = `${api.getSiteUrl()}${movie.image.formats.thumbnail.url}`;
-        movie._id = thisMovieInFavlist ? thisMovieInFavlist._id : false;
-        return movie;
-      })
-    }
     setMovieCardList(listFiltered);
     hidePreloader();
   }

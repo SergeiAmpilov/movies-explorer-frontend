@@ -32,8 +32,6 @@ import movieApi from '../../utils/MovieApi';
 import api from '../../utils/api';
 import { MESSAGES } from '../../utils/constants';
 
-
-
 function App() {
 
   const [loggedIn, setLoggedIn] = React.useState(false);

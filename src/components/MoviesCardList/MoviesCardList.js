@@ -4,6 +4,7 @@ import './MoviesCardList.css';
 
 import MoviesCard from '../MoviesCard/MoviesCard';
 import Preloader from '../Preloader/Preloader';
+import api from '../../utils/api';
 
 import { PAGINATION_CONFIG } from '../../utils/constants.js';
 
@@ -24,7 +25,7 @@ function MoviesCardList({
   const renderCardListByRows = () => {
     return movieCardList.slice(0, actualPagination.cardsInRow * rowCount)
             .map( card => <MoviesCard 
-              image={card.image}
+              image={isSaved ? card.image : `${api.getSiteUrl()}${card.image.url}`}
               key={card.id}
               title={card.nameRU}
               duration={card.duration}
@@ -32,7 +33,7 @@ function MoviesCardList({
               movieId={card.id} /* это id в стороннем сервисе */
               nameRU={card.nameRU}
               nameEN={card.nameEN}
-              thumbnail={card.thumbnail}
+              thumbnail={isSaved ? card.thumbnail : `${api.getSiteUrl()}${card.image.url}`}
               trailerLink={card.trailerLink}
               description={card.description}
               year={card.year}

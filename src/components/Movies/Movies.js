@@ -5,10 +5,7 @@ import './Movies.css';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import EmptyQuery from '../EmptyQuery/EmptyQuery';
-
-import { parseMovieList } from '../../utils/functions.js';
-
-
+import { parseMovieList } from '../../utils/functions';
 
 function Movies({ handleMovieAdd, handleMovieRemove, favMovieList, moviesBeatFilm }) {
 
@@ -17,9 +14,11 @@ function Movies({ handleMovieAdd, handleMovieRemove, favMovieList, moviesBeatFil
     value: false,
     message: ''
   });
-  const [movieCardList, setMovieCardList] = React.useState(
-    parseMovieList(moviesBeatFilm, favMovieList)
-  );
+  const [movieCardList, setMovieCardList] = React.useState([]);
+
+  React.useEffect(()=>{
+      setMovieCardList( parseMovieList(moviesBeatFilm, favMovieList) );
+  }, []);
 
   
 

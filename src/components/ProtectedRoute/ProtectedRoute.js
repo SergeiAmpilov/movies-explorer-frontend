@@ -9,6 +9,7 @@ const ProtectedRoute = ({ component: Component, ...props }) => {
   return (
       <Route>
           {() =>
+            // <Component {...props} />
             props.isLoading 
                 ? <Preloader />
                 : props.loggedIn ? <Component {...props} /> : <Redirect to="/" />

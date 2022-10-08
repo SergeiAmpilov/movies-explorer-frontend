@@ -17,23 +17,11 @@ const getFavMovie = (favMovieList, id) => {
 movie-explorer.
 */
 const parseMovieList = (sourceArr, favMovieList) => {
-  
-  return sourceArr
-  .filter((item) => {
-    if ( typeof item.image === 'undefined'
-    || typeof item.image.formats === 'undefined'
-    || typeof item.image.formats.thumbnail === 'undefined'
-    || typeof item.image.formats.thumbnail.url === 'undefined') {
-      return false;
-    }
-    return true;
-  })
-  .map((movie) => {
-    let thisMovieInFavlist = getFavMovie(favMovieList, movie.id);          
 
-    movie.thumbnail = `${api.getSiteUrl()}${movie.image.formats.thumbnail.url}`;
-    movie.image = `${api.getSiteUrl()}${movie.image.formats.thumbnail.url}`;
-    movie._id = thisMovieInFavlist ? thisMovieInFavlist._id : false;
+  return sourceArr.slice()
+    .map((movie) => {
+      let thisMovieInFavlist = getFavMovie(favMovieList, movie.id);          
+      movie._id = thisMovieInFavlist ? thisMovieInFavlist._id : false;
 
     return movie;
   });
