@@ -19,7 +19,7 @@ function SearchForm({
   isSavedMovies=true,
 }) {
   
-  const [searchShorts, setSearchShorts] = React.useState(true);
+  const [searchShorts, setSearchShorts] = React.useState(false);
   const [query, setQuery] = React.useState('');
 
 
