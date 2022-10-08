@@ -103,7 +103,6 @@ function App() {
   const clearOnLogout = () => {
     setMoviesBeatFilm([]);
     setFavMovieList([]);
-
     history.push('/');
   }
 
@@ -111,7 +110,6 @@ function App() {
     movieApi.logout()
         .then((res)=> {
           setLoggedIn(false);
-          // clearOnLogout();
         })
         .catch((err) => {
           console.log(`Ошибка.....: ${err}`);
@@ -186,6 +184,9 @@ function App() {
           />
         </Route>
         <Switch>
+          <Route exact path='/'>
+            <Main />
+          </Route>
           <Route exact path='/signup'>
             <Register onRegister={handleRegister}/>
           </Route>
@@ -214,9 +215,6 @@ function App() {
             handleUpdate={onUpdate}
             openPopup={openPopup}
           />
-          <Route exact path='/'>
-            <Main />
-          </Route>
           <Route path="*">
             <PageNotFound />
           </Route>

@@ -24,8 +24,6 @@ function Movies({ handleMovieAdd, handleMovieRemove, favMovieList, moviesBeatFil
     setIsPreloaderVisible(false);
   };
 
-
-
   return (
     
       <main className='movies'>
