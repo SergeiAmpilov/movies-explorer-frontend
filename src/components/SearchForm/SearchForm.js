@@ -25,6 +25,7 @@ function SearchForm({
 
 
   const handlecClickSearchShorts = () => {
+    makeSearch(!searchShorts);
     setSearchShorts(!searchShorts);
   };
 
@@ -36,31 +37,23 @@ function SearchForm({
     }
   };
 
-  const handleSubmitSearch = (evt) => {
 
-    evt.preventDefault();
-    if (query.trim() === '') {
-
-      setIsEmptyQuery({
-        value: true,
-        message: 'Вы ничего не ввели в поисковую строку.'
-      });
-
-      setShowErrorEmptyQuery(true);
-      return ;
-    } else {
-      setIsEmptyQuery(false);
-    }
-
-    ////
+  // shortsMode - признак того, что делаем поиск только по короткометражкам
+  const makeSearch = (configSearchShorts) => {
     showPreloader();
 
     let srcMovieList = isSavedMovies ? favMovieList : moviesBeatFilm;
 
     let listFiltered = srcMovieList.filter( (item) => {
-      if (searchShorts && item.duration > SHORTS_MOVIE_LENGTH) {
-        return false;
-      }    
+
+      if (configSearchShorts && item.duration > SHORTS_MOVIE_LENGTH) {
+        return false ;
+      }
+
+      if (configSearchShorts && item.duration <= SHORTS_MOVIE_LENGTH && 
+        query.trim() === '') {
+          return true ;
+        }
 
       return item.nameRU !== ''
         && item.nameRU.toLowerCase().indexOf(query.toLowerCase()) !== -1;
@@ -72,9 +65,14 @@ function SearchForm({
         message: `По вашему запросу "${query}" не найдено подходящих фильмов`
       });
     }
-
     setMovieCardList(listFiltered);
+
     hidePreloader();
+  }
+
+  const handleSubmitSearch = (evt) => {
+    evt.preventDefault();
+    makeSearch(searchShorts);
   }
   
   return (
