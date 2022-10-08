@@ -65,7 +65,9 @@ function MoviesCard({
 
   return (isSaved && isCardFavourite) || !isSaved ? (
     <li className='card'>
-      <img src={image} className='card__img' alt={`Фильм ${title}`}/>
+      <a href={trailerLink} target='_blank' rel="noreferrer">
+        <img src={image} className='card__img' alt={`Фильм ${title}`}/>
+      </a>
       <div className='card__container'>
         <div className='card__title-group'>
           <p className='card__title'>{title}</p>
