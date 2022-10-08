@@ -22,6 +22,8 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Popup from '../Popup/Popup';
+import Preloader from '../Preloader/Preloader';
+
 
 
 import { currentUserContext } from '../../contexts/CurrentUserContext';
@@ -38,6 +40,7 @@ function App() {
   const [currentUser, setCurrentUser] = React.useState({});
   const [favMovieList, setFavMovieList] = React.useState([]); /* список любимых фильмов текущего пользователя */
   const [moviesBeatFilm, setMoviesBeatFilm] = React.useState([]);
+  const [isLoading, setIsLoading] = React.useState(true);
 
   const [popupTitle, setPopupTitle] = React.useState('');
   const [isPopupOpen, setIsPopupOpen] = React.useState(false);
@@ -103,7 +106,7 @@ function App() {
   const clearOnLogout = () => {
     setMoviesBeatFilm([]);
     setFavMovieList([]);
-    history.push('/');
+    // history.push('/');
   }
 
   const onLogout = () => {
@@ -147,7 +150,8 @@ function App() {
         .catch((err) => {
           console.log(`Ошибка.....: ${err}`);
           setLoggedIn(false);
-        });
+        })
+        .finally(() => {setIsLoading(false)});
   }, []);
 
   React.useEffect(() => {
@@ -201,12 +205,14 @@ function App() {
             handleMovieRemove={handleMovieRemove}
             favMovieList={favMovieList}
             moviesBeatFilm={moviesBeatFilm}
+            isLoading={isLoading}
           />
           <ProtectedRoute path="/saved-movies"
             component={SavedMovies}
             loggedIn = {loggedIn}
             handleMovieRemove={handleMovieRemove}
             favMovieList={favMovieList}
+            isLoading={isLoading}
           />
           <ProtectedRoute path="/profile"
             component={Profile}
@@ -214,6 +220,7 @@ function App() {
             handleLogout={onLogout}
             handleUpdate={onUpdate}
             openPopup={openPopup}
+            isLoading={isLoading}
           />
           <Route path="*">
             <PageNotFound />
