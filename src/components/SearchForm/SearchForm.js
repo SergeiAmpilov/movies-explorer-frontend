@@ -21,6 +21,7 @@ function SearchForm({
   
   const [searchShorts, setSearchShorts] = React.useState(false);
   const [query, setQuery] = React.useState('');
+  const [showErrorEmptyQuery, setShowErrorEmptyQuery] = React.useState(false);
 
 
   const handlecClickSearchShorts = () => {
@@ -28,17 +29,24 @@ function SearchForm({
   };
 
   const handleQueryInput = (evt) => {
-    setQuery(evt.target.value)
+    const inputValue = evt.target.value;
+    setQuery(inputValue);
+    if (inputValue.trim() !== '') {
+      setShowErrorEmptyQuery(false);      
+    }
   };
 
   const handleSubmitSearch = (evt) => {
 
     evt.preventDefault();
     if (query.trim() === '') {
-      setIsEmptyQuery({
-        value: true,
-        message: 'Вы ничего не ввели в поисковую строку.'
-      });
+
+      // setIsEmptyQuery({
+      //   value: true,
+      //   message: 'Вы ничего не ввели в поисковую строку.'
+      // });
+      
+      setShowErrorEmptyQuery(true);
       return ;
     } else {
       setIsEmptyQuery(false);
@@ -92,10 +100,13 @@ function SearchForm({
   
   return (
     <div className='search-form'>
-      <form className='search-form__form' onSubmit={handleSubmitSearch}>
+      <form className='search-form__form' onSubmit={handleSubmitSearch} noValidate>
         <img src={searchIcon} alt="Иконка поиска" className="search-form__search-icon"/>
         <label className='search-form__group-small'>
-          <input placeholder='Фильм' className='search-form__input' onInput={handleQueryInput} required></input>
+          <div className='search-form__input-group'>
+            <input placeholder='Фильм' className='search-form__input' onInput={handleQueryInput}></input>
+            { showErrorEmptyQuery && <p className='search-form__error'>Введите название фильма</p> }
+          </div>
           <button type='submit' className='search-form__search-button'></button>
         </label>
         <img src={breakIcon} alt="Иконка разделитель" className="search-form__break_icon"/>

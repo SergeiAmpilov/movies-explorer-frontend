@@ -17,7 +17,7 @@ const getFavMovie = (favMovieList, id) => {
 movie-explorer.
 */
 const parseMovieList = (sourceArr, favMovieList) => {
-
+  
   return sourceArr
   .filter((item) => {
     if ( typeof item.image === 'undefined'
