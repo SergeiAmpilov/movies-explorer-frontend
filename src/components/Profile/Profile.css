@@ -54,7 +54,7 @@
 
 .profile__form_button {
   width: 100%;
-  margin: 220px auto 16px;
+  margin: 0px auto 16px;
   border: none;
   background-color: transparent;
   color: #FFF;
@@ -68,10 +68,12 @@
 }
 
 .profile__form_footer {
+  margin: 220px auto 16px;
   text-align: center;
 }
 .profile__logout-link, 
 .profile__logout-link:visited {
+  margin-top: 16px;
   color: #EE3465;
   text-decoration: none;
   font-weight: 500;

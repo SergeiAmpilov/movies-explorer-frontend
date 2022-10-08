@@ -1,17 +1,45 @@
 import React from 'react';
-import { Link } from 'react-router-dom'; 
+import { Link } from 'react-router-dom';
+
+import { currentUserContext } from '../../contexts/CurrentUserContext';
+import { MESSAGES } from '../../utils/constants';
+
 
 import './Profile.css';
-import Header from '../Header/Header';
 
 
-function Profile({ handleLogout, handleUpdate }) {
 
-  const [name, setName] = React.useState('');
-  const [email, setEmail] = React.useState('');
+function Profile({ handleLogout, handleUpdate, openPopup }) {
 
-  const handleChangeName = (evt) => setName(evt.target.value);
-  const handleChangeEmail = (evt) => setEmail(evt.target.value);
+  const currentUser = React.useContext(currentUserContext);
+  const [name, setName] = React.useState(currentUser.name);
+  const [lastName, setLastName] = React.useState(currentUser.name);
+  const [email, setEmail] = React.useState(currentUser.email);
+  const [lastEmail, setLastEmail] = React.useState(currentUser.email);
+
+  const [isVisibleButton, setVisibleButton] = React.useState(false);
+
+
+  const handleChangeName = (evt) => {
+    const value = evt.target.value;
+    setName(value);
+
+    if (value !== lastName) {
+      setVisibleButton(true);
+    } else {
+      setVisibleButton(false);
+    }
+  };
+  const handleChangeEmail = (evt) => {
+    const value = evt.target.value;
+    setEmail(value);
+
+    if (value !== lastEmail) {
+      setVisibleButton(true);
+    } else {
+      setVisibleButton(false);
+    }
+  };
 
   const handleLogoutClick = (evt) => {
     evt.preventDefault();
@@ -20,15 +48,18 @@ function Profile({ handleLogout, handleUpdate }) {
 
   const handleUpdateUserInfo = (evt) => {
     evt.preventDefault();
+
+    if (!isVisibleButton) {
+      openPopup(MESSAGES.profileUpdatetError);
+      return ;
+    }
+
     handleUpdate(name, email);
   }
 
   return (
-    <>
-    {/* <Header loggedIn={true} /> */}
-
     <main className='profile'>
-      <h1 className='profile__title'>Привет, Святогор!</h1>
+      <h1 className='profile__title'>Привет, {name}!</h1>
       <form className='profile__form' onSubmit={handleUpdateUserInfo}>
         <label className='profile__form_group'>
           <p className='profile__form_title'>Имя</p>
@@ -41,6 +72,7 @@ function Profile({ handleLogout, handleUpdate }) {
             minLength="2"
             maxLength="40"
             onChange={handleChangeName}
+            value={name}
             required
           />
         </label>
@@ -53,21 +85,25 @@ function Profile({ handleLogout, handleUpdate }) {
             id="email-input"
             type='email'
             onChange={handleChangeEmail}
+            value={email}
             required
           />
         </label>
         <div className='profile__form_footer'>
-          <button className='profile__form_button' type='submit'>Редактировать</button>
+          { isVisibleButton && 
+            <button
+              className='profile__form_button'
+              type='submit'
+              disabled={!isVisibleButton}>
+                Редактировать
+            </button>
+          }
           <Link to='/' className='profile__logout-link' onClick={handleLogoutClick}>
             Выйти из аккаунта
           </Link>
-          {/* <a className='profile__logout-link'
-              onClick={handleLogoutClick} href='/'>Выйти из аккаунта</a> */}
         </div>
       </form>
-      
     </main>
-    </>
   );
 }
 

@@ -24,6 +24,7 @@ const MESSAGES = {
   'sucsessRegistration': 'Вы успешно зарегистрированы',
   'sucsessUpdate': 'Вы успешно обновлены',
   'defaultError': 'Что-то пошло не так',
+  'profileUpdatetError': 'Обновите данные',
 };
 
 export {

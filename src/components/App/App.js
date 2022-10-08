@@ -80,8 +80,9 @@ function App() {
       })
       .catch((err) => {
         console.log(`Ошибка.....: ${err}`);
-        setPopupTitle(MESSAGES.defaultError);
-        setIsPopupOpen(true);
+        openPopup(MESSAGES.defaultError);
+        // setPopupTitle(MESSAGES.defaultError);
+        // setIsPopupOpen(true);
       });
   };
 
@@ -97,8 +98,9 @@ function App() {
       })
       .catch(err => {
         console.log(`Ошибка.....: ${err}`);
-        setPopupTitle(MESSAGES.defaultError);
-        setIsPopupOpen(true);
+        openPopup(MESSAGES.defaultError);
+        // setPopupTitle(MESSAGES.defaultError);
+        // setIsPopupOpen(true);
       });
   }
 
@@ -110,23 +112,30 @@ function App() {
         })
         .catch((err) => {
           console.log(`Ошибка.....: ${err}`);
-          setPopupTitle(MESSAGES.defaultError);
-          setIsPopupOpen(true);
+          openPopup(MESSAGES.defaultError);
+          // setPopupTitle(MESSAGES.defaultError);
+          // setIsPopupOpen(true);
         });
   }
 
   const onUpdate = (name, email) => {
     movieApi.update({ name, email })
       .then( (res) => {
-        // console.log(res);
-        setPopupTitle(MESSAGES.sucsessUpdate);
-        setIsPopupOpen(true);
+        openPopup(MESSAGES.sucsessUpdate);
+        // setPopupTitle(MESSAGES.sucsessUpdate);
+        // setIsPopupOpen(true);
       })
       .catch((err) => {
           console.log(`Ошибка.....: ${err}`);
-          setPopupTitle(MESSAGES.defaultError);
-          setIsPopupOpen(true);
+          openPopup(MESSAGES.defaultError);
+          // setPopupTitle(MESSAGES.defaultError);
+          // setIsPopupOpen(true);
       })
+  }
+
+  const openPopup = (message) => {
+    setPopupTitle(message);
+    setIsPopupOpen(true);
   }
 
   const closePopup = () => {
@@ -203,6 +212,7 @@ function App() {
             loggedIn = {loggedIn}
             handleLogout={onLogout}
             handleUpdate={onUpdate}
+            openPopup={openPopup}
           />
           <Route exact path='/'>
             <Main />
