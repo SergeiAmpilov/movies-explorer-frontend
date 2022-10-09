@@ -40,6 +40,8 @@ function SearchForm({
 
   // shortsMode - признак того, что делаем поиск только по короткометражкам
   const makeSearch = (configSearchShorts) => {
+
+    console.log(`run search with params configSearchShorts ${configSearchShorts} query ${query}`);
     showPreloader();
 
     let srcMovieList = isSavedMovies ? favMovieList : moviesBeatFilm;
@@ -62,12 +64,20 @@ function SearchForm({
     if (listFiltered.length === 0) {
       setIsEmptyQuery({
         value: true,
-        message: `По вашему запросу "${query}" не найдено подходящих фильмов`
+        message: `По вашему запросу "${query}" не найдено подходящих фильмов. Shorts ${configSearchShorts}`
+      });
+    } else {
+      setIsEmptyQuery({
+        value: false,
+        message: ``
       });
     }
+    
     setMovieCardList(listFiltered);
 
     hidePreloader();
+
+    
   }
 
   const handleSubmitSearch = (evt) => {
