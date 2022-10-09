@@ -63,7 +63,7 @@ function App() {
       });
   }
 
-  const handleLogin = (email, password) => {
+  const handleLogin = ({email, password}) => {
     movieApi.signIn({ email, password })
         .then((res) => {
           // setLoggedIn(true);
