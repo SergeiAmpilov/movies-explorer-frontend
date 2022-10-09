@@ -78,7 +78,8 @@ function App() {
   const handleMovieAdd = (cardParams) => {
     movieApi.addFilm(cardParams)
       .then((res) => {
-        setFavMovieList([...favMovieList, res]);
+        // setFavMovieList([...favMovieList, res]); ////
+        movieApi.getFilms().then(setFavMovieList);
       })
       .catch((err) => {
         console.log(`Ошибка.....: ${err}`);
