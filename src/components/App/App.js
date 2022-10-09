@@ -136,6 +136,9 @@ function App() {
   }
 
   const clearOnLogout = () => {
+    localStorage.removeItem(`${currentUser.email} - searchShorts`);
+    localStorage.removeItem(`${currentUser.email} - query`);
+    localStorage.removeItem(`${currentUser.email} - movieList`)
     setMoviesBeatFilm([]);
     setFavMovieList([]);
     setCurrentUser({});
