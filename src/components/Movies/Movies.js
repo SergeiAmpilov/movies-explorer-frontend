@@ -21,11 +21,18 @@ function Movies({ handleMovieAdd, handleMovieRemove, favMovieList, moviesBeatFil
   const [movieCardList, setMovieCardList] = React.useState([]);
 
   React.useEffect(()=>{
-      setMovieCardList( 
-        localStorage.getItem(`${currentUser.email} - movieList`)
-          ? JSON.parse(localStorage.getItem(`${currentUser.email} - movieList`))
-          : parseMovieList(moviesBeatFilm, favMovieList)
-      );
+
+    const initialArr = localStorage.getItem(`${currentUser.email} - movieList`)
+      ? JSON.parse(localStorage.getItem(`${currentUser.email} - movieList`))
+      : moviesBeatFilm;
+
+    setMovieCardList(parseMovieList(initialArr, favMovieList));
+
+      // setMovieCardList( 
+      //   localStorage.getItem(`${currentUser.email} - movieList`)
+      //     ? JSON.parse(localStorage.getItem(`${currentUser.email} - movieList`))
+      //     : parseMovieList(moviesBeatFilm, favMovieList)
+      // );
   }, [currentUser]);
 
   

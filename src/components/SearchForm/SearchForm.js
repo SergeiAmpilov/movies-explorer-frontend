@@ -54,7 +54,6 @@ function SearchForm({
   // shortsMode - признак того, что делаем поиск только по короткометражкам
   const makeSearch = (configSearchShorts) => {
 
-    console.log(`run search with params configSearchShorts ${configSearchShorts} query ${query}`);
     showPreloader();
 
     let srcMovieList = isSavedMovies ? favMovieList : moviesBeatFilm;

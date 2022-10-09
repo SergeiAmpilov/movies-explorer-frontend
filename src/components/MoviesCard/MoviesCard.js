@@ -41,7 +41,6 @@ function MoviesCard({
   const handleButtonToggle = () => {
 
 
-    console.log('click button toggle. state is', isCardFavourite);
 
     if (isCardFavourite) {
       handleMovieRemove(_id);

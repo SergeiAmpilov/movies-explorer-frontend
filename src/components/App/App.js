@@ -94,8 +94,9 @@ function App() {
     
     movieApi.removeFilm(movieIdDb)
       .then( (res) => {
-        const newFavMovieList = favMovieList.filter( item => item._id !== movieIdDb);
-        setFavMovieList(newFavMovieList);
+        // const newFavMovieList = favMovieList.filter( item => item._id !== movieIdDb);
+        // setFavMovieList(newFavMovieList);
+        movieApi.getFilms().then(setFavMovieList);
       })
       .catch(err => {
         console.log(`Ошибка.....: ${err}`);
