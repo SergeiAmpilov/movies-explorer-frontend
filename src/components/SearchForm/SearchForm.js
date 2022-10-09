@@ -101,6 +101,11 @@ function SearchForm({
 
   const handleSubmitSearch = (evt) => {
     evt.preventDefault();
+    if (query.trim() === '') {
+      setShowErrorEmptyQuery(true);
+      return ;      
+    }
+    
     makeSearch(searchShorts);
   }
   
@@ -117,7 +122,6 @@ function SearchForm({
         </label>
         <img src={breakIcon} alt="Иконка разделитель" className="search-form__break_icon"/>
         <div className='search-form__shorts-group'>
-          { console.log('render tubler with param search shorts = ', searchShorts) }
           <button
             type='button'
             onClick={handlecClickSearchShorts}
