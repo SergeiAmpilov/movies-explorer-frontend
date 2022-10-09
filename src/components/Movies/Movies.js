@@ -6,8 +6,12 @@ import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import EmptyQuery from '../EmptyQuery/EmptyQuery';
 import { parseMovieList } from '../../utils/functions';
+import { currentUserContext } from '../../contexts/CurrentUserContext';
+
 
 function Movies({ handleMovieAdd, handleMovieRemove, favMovieList, moviesBeatFilm }) {
+
+  const currentUser = React.useContext(currentUserContext);
 
   const [isPreloaderVisible, setIsPreloaderVisible] = React.useState(false);
   const [isEmptyQuery, setIsEmptyQuery] = React.useState({
@@ -17,8 +21,12 @@ function Movies({ handleMovieAdd, handleMovieRemove, favMovieList, moviesBeatFil
   const [movieCardList, setMovieCardList] = React.useState([]);
 
   React.useEffect(()=>{
-      setMovieCardList( parseMovieList(moviesBeatFilm, favMovieList) );
-  }, []);
+      setMovieCardList( 
+        localStorage.getItem(`${currentUser.email} - movieList`)
+          ? JSON.parse(localStorage.getItem(`${currentUser.email} - movieList`))
+          : parseMovieList(moviesBeatFilm, favMovieList)
+      );
+  }, [currentUser]);
 
   
 
