@@ -76,7 +76,7 @@ function SearchForm({
     if (listFiltered.length === 0) {
       setIsEmptyQuery({
         value: true,
-        message: `По вашему запросу "${query}" не найдено подходящих фильмов. Shorts ${configSearchShorts}`
+        message: `По вашему запросу "${query}" не найдено подходящих фильмов`
       });
     } else {
       setIsEmptyQuery({
