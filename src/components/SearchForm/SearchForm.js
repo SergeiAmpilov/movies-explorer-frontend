@@ -7,6 +7,8 @@ import api from '../../utils/api';
 
 import { getFavMovie } from '../../utils/functions.js';
 import { SHORTS_MOVIE_LENGTH } from '../../utils/constants.js';
+import { currentUserContext } from '../../contexts/CurrentUserContext';
+
 
 
 function SearchForm({ 
@@ -22,6 +24,8 @@ function SearchForm({
   const [searchShorts, setSearchShorts] = React.useState(false);
   const [query, setQuery] = React.useState('');
   const [showErrorEmptyQuery, setShowErrorEmptyQuery] = React.useState(false);
+
+  const currentUser = React.useContext(currentUserContext);
 
 
   const handlecClickSearchShorts = () => {
@@ -77,7 +81,13 @@ function SearchForm({
 
     hidePreloader();
 
-    
+    if (!isSavedMovies) {
+      localStorage.setItem(`${currentUser.email} - searchShorts`, configSearchShorts);
+      localStorage.setItem(`${currentUser.email} - query`, query);
+      localStorage.setItem(`${currentUser.email} - movieList`, JSON.stringify(listFiltered));
+    }
+
+
   }
 
   const handleSubmitSearch = (evt) => {
