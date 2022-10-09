@@ -23,7 +23,11 @@ function SearchForm({
   
   const currentUser = React.useContext(currentUserContext);
 
-  const [searchShorts, setSearchShorts] = React.useState(false);
+  const [searchShorts, setSearchShorts] = React.useState(
+    !isSavedMovies && localStorage.getItem(`${currentUser.email} - searchShorts`)
+      ? localStorage.getItem(`${currentUser.email} - searchShorts`) === 'true'
+      : false
+  );
   const [query, setQuery] = React.useState(
     !isSavedMovies && localStorage.getItem(`${currentUser.email} - query`)
       ? localStorage.getItem(`${currentUser.email} - query`)
@@ -113,6 +117,7 @@ function SearchForm({
         </label>
         <img src={breakIcon} alt="Иконка разделитель" className="search-form__break_icon"/>
         <div className='search-form__shorts-group'>
+          { console.log('render tubler with param search shorts = ', searchShorts) }
           <button
             type='button'
             onClick={handlecClickSearchShorts}
