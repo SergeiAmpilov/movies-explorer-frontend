@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   Route,
+  Redirect,
   Switch,
   useHistory,
   useLocation,
@@ -198,10 +199,18 @@ function App() {
             <Main />
           </Route>
           <Route exact path='/signup'>
-            <Register onRegister={handleRegister}/>
+            { () => isLoading ? <Preloader /> : 
+                loggedIn
+                  ? <Redirect to="/movies" />
+                  : <Register onRegister={handleRegister}/>
+            }            
           </Route>
           <Route exact path='/signin'>
-            <Login onLogin={handleLogin} />
+            { () => isLoading ? <Preloader /> :
+                loggedIn
+                  ? <Redirect to="/movies" />
+                  : <Login onLogin={handleLogin} />
+            }            
           </Route>
           <ProtectedRoute
             path='/movies'
