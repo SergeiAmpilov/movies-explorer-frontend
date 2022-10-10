@@ -59,7 +59,13 @@ function MoviesCardList({
   }
 
   const handlerResize = () => {
-    setActualPagination(getActualPagination()); 
+    const actPag = getActualPagination();
+
+
+    setActualPagination(actPag);
+    setRowCount(actPag.rows);
+    setDisplayMovieList(renderCardListByRows());
+
   }
 
 
@@ -74,8 +80,10 @@ function MoviesCardList({
 
   /* при первом открытии определим, можем ли мы вывести хотя бы одну строку */
   React.useEffect(() => {
-    setActualPagination(getActualPagination()); 
-    setRowCount(actualPagination.rows);
+
+    const actPag = getActualPagination();
+    setActualPagination(actPag); 
+    setRowCount(actPag.rows);
     setDisplayMovieList(renderCardListByRows());
 
     window.addEventListener('resize', handlerResize);

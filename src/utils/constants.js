@@ -1,14 +1,14 @@
 const SHORTS_MOVIE_LENGTH = 45;
 const PAGINATION_CONFIG = {
   '1280': {
-    cardsInRow: 4,
-    rows: 2,
+    cardsInRow: 3,
+    rows: 4,
     step: 1,
     pixelWidth: 1280,
   },
   '768': {
     cardsInRow: 2,
-    rows: 2,
+    rows: 4,
     step: 1,
     pixelWidth: 768,
   },
