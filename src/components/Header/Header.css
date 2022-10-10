@@ -1,0 +1,41 @@
+.header-main {
+  width: 100%;
+  background-color: #073042;
+}
+
+.header-main__black {
+  background-color: #202020;
+}
+.header {
+  padding-top: 18px;
+  margin: 0 auto;
+  width: 1140px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__auth {
+  justify-content: flex-start;
+}
+
+.header__logo {
+  transition: all .3s ease;
+}
+
+.header__logo:hover {
+  transform: rotate(45deg);
+}
+
+@media screen and (max-width: 1140px) {
+  .header {
+    width: 708px;
+  }
+}
+
+@media screen and (max-width: 708px) {
+  .header {
+    width: calc(100% - 28px);
+  }
+}
+
