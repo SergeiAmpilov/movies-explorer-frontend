@@ -78,7 +78,9 @@ function App() {
   const handleMovieAdd = (cardParams) => {
     return movieApi.addFilm(cardParams)
       .then((res) => {
-        setFavMovieList([...favMovieList, res]);
+        // setFavMovieList([...favMovieList, res]);
+        setFavMovieList(prevState => [...prevState, res]);
+
         // movieApi.getFilms().then(setFavMovieList);
         return true;
       })
