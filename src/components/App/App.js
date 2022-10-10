@@ -98,8 +98,9 @@ function App() {
     
     return movieApi.removeFilm(movieIdDb)
       .then( (res) => {
-        const newFavMovieList = favMovieList.filter( item => item._id !== movieIdDb);
-        setFavMovieList(newFavMovieList);
+        // const newFavMovieList = favMovieList.filter( item => item._id !== movieIdDb);
+        // setFavMovieList(newFavMovieList);
+        setFavMovieList(prevState => prevState.filter(item => item._id !== movieIdDb));
         // movieApi.getFilms().then(setFavMovieList);
         return true;
       })
