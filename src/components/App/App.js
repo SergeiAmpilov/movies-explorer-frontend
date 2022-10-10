@@ -67,7 +67,6 @@ function App() {
   const handleLogin = ({email, password}) => {
     movieApi.signIn({ email, password })
         .then((res) => {
-          // setLoggedIn(true);
           refreshUserInfo();
           history.push('/movies');
         })
@@ -112,7 +111,6 @@ function App() {
   const onLogout = () => {
     movieApi.logout()
       .then((res)=> {
-        // setLoggedIn(false);
         clearOnLogout();
       })
       .catch((err) => {
@@ -149,7 +147,6 @@ function App() {
     setMoviesBeatFilm([]);
     setFavMovieList([]);
     setCurrentUser({});
-    setIsLoading(true);
     setLoggedIn(false);
     history.push('/');
   }
@@ -159,7 +156,6 @@ function App() {
       .then((profileData) => {
         setCurrentUser(profileData);
         setLoggedIn(true);
-
         movieApi.getFilms()
         .then((res) => {
           setFavMovieList(res);
@@ -167,18 +163,15 @@ function App() {
           api.getFilms()
             .then((res) => {
               setMoviesBeatFilm(res);
-              setIsLoading(false); //
             })
             .catch(err => console.log(`Ошибка.....: ${err}`));
         })
         .catch(err => console.log(`Ошибка.....: ${err}`));
-
-
       })
       .catch( (err) => {
         clearOnLogout();
       })
-
+      .finally(()=> setIsLoading(false));
   }
 
   // проверка токена при первичном открытии сайта
@@ -199,14 +192,16 @@ function App() {
             <Main />
           </Route>
           <Route exact path='/signup'>
-            { () => isLoading ? <Preloader /> : 
+            {
+              () => isLoading ? <Preloader /> : 
                 loggedIn
                   ? <Redirect to="/movies" />
                   : <Register onRegister={handleRegister}/>
             }            
           </Route>
           <Route exact path='/signin'>
-            { () => isLoading ? <Preloader /> :
+            {
+              () => isLoading ? <Preloader /> :
                 loggedIn
                   ? <Redirect to="/movies" />
                   : <Login onLogin={handleLogin} />
