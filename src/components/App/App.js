@@ -82,7 +82,7 @@ function App() {
         setFavMovieList(prevState => [...prevState, res]);
 
         // movieApi.getFilms().then(setFavMovieList);
-        return true;
+        return res;
       })
       .catch((err) => {
         console.log(`Ошибка.....: ${err}`);

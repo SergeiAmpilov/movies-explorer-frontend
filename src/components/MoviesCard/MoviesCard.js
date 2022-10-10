@@ -23,7 +23,7 @@ function MoviesCard({
   }) {
 
   const [isCardFavourite, setIsCardFavourite] = React.useState(isFavourite);
-  // const [idDb, setIdDb] = React.useState(_id);
+  const [idDb, setIdDb] = React.useState(_id);
 
   let buttonClass;
   const hours = Math.floor(duration / 60);
@@ -41,9 +41,9 @@ function MoviesCard({
   const handleButtonToggle = () => {
 
     if (isCardFavourite) {
-      handleMovieRemove(_id)
+      handleMovieRemove(idDb)
         .then( (res) => {
-          if (res) {
+          if (res !== false) {
             setIsCardFavourite(!isCardFavourite);
           }
         } )
@@ -63,6 +63,7 @@ function MoviesCard({
       })
       .then((res) => {
         if (res) {
+          setIdDb(res._id)
           setIsCardFavourite(!isCardFavourite);
         }
       })
