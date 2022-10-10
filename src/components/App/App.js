@@ -76,31 +76,35 @@ function App() {
   }
 
   const handleMovieAdd = (cardParams) => {
-    movieApi.addFilm(cardParams)
+    return movieApi.addFilm(cardParams)
       .then((res) => {
         setFavMovieList([...favMovieList, res]);
         // movieApi.getFilms().then(setFavMovieList);
+        return true;
       })
       .catch((err) => {
         console.log(`Ошибка.....: ${err}`);
         openPopup(MESSAGES.defaultError);
+        return false;
       });
   };
 
   const handleMovieRemove = (movieIdDb) => {
     if (!movieIdDb) {
-      return ;
+      return false;
     }
     
-    movieApi.removeFilm(movieIdDb)
+    return movieApi.removeFilm(movieIdDb)
       .then( (res) => {
         const newFavMovieList = favMovieList.filter( item => item._id !== movieIdDb);
         setFavMovieList(newFavMovieList);
         // movieApi.getFilms().then(setFavMovieList);
+        return true;
       })
       .catch(err => {
         console.log(`Ошибка.....: ${err}`);
         openPopup(MESSAGES.defaultError);
+        return false;
       });
   }
 

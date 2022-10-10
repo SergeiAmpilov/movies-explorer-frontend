@@ -40,10 +40,13 @@ function MoviesCard({
 
   const handleButtonToggle = () => {
 
-
-
     if (isCardFavourite) {
-      handleMovieRemove(_id);
+      handleMovieRemove(_id)
+        .then( (res) => {
+          if (res) {
+            setIsCardFavourite(!isCardFavourite);
+          }
+        } )
     } else {
       handleMovieAdd({
         nameRU,
@@ -58,8 +61,12 @@ function MoviesCard({
         director,
         country,
       })
+      .then((res) => {
+        if (res) {
+          setIsCardFavourite(!isCardFavourite);
+        }
+      })
     }
-    setIsCardFavourite(!isCardFavourite);
   }
 
   return (isSaved && isCardFavourite) || !isSaved ? (
